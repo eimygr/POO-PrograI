@@ -1,6 +1,10 @@
-/**
- * Created by Eimy on 04/04/2017.
- */
-public class Biblioteca
-{
+import java.util.Date;
+
+public class Biblioteca {
+    private String nombre;
+    private String ubicacion;
+    private int telefono;
+    private String bibliotecologo;
+    private Date fechaActual;
+
 }
