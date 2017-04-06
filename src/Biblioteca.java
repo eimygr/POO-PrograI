@@ -8,3 +8,5 @@ public class Biblioteca {
     private Date fechaActual;
 
 }
+
+public void validarDatos(String pNombre, String pCorreo, String pCedula)
