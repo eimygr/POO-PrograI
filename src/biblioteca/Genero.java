@@ -1,7 +1,9 @@
+package biblioteca;
+
 /**
  * Created by Eimy on 05/04/2017.
  */
-public enum Genero {
+public enum Genero {;
     private int  novela = 1;
     private int teatro = 2;
     private int poesia = 3;
