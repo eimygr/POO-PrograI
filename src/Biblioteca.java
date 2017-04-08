@@ -21,7 +21,9 @@ public class Biblioteca {
     }
 
     private boolean validarCorreo(String _correoE) {
-
+        if (!this.validarString(_correoE))
+            return false;
+        
         if (_correoE.length() == 0 )
             return false;
 
@@ -39,7 +41,65 @@ public class Biblioteca {
         }
         return true;
     }
-
+   // metodo utilizado para Nombre, Autor 
+    private boolean validarString(String _string) {
+        if (_string != null && _string.trim().length() > 0 )
+            return true;
+        return false;
+        
+    }
+    private boolean validarTipoLibro(String _tipo){
+        if (!this.validarString(_tipo))
+            return false;
+        
+        switch (_tipo) {
+            case "novela":
+                return true;
+                
+            case "teatro":
+                return true;
+                
+            case "poesia":
+                return true;
+               
+            case "infantil":
+                return true;
+                
+            case "ensayos":
+                return true;
+        }
+        return false;
+    }
+    
+    private boolean validarStringSinNumeros(String _string) {
+        for (int i = 0; i < _string.length(); i++) {
+            char letra = _string.charAt(i);
+            switch (letra) {
+                case '0':
+                    return false;
+                case '1':
+                    return false;
+                case '2':
+                    return false;
+                case '3':
+                    return false;
+                case '4':
+                    return false;
+                case '5':
+                    return false;
+                case '6':
+                    return false;
+                case '7':
+                    return false;
+                case '8':
+                    return false;
+                case '9':
+                    return false;
+            }   
+        }
+        return true;
+    }
+    
 }
 
 //public void validarDatos(String pNombre, String pCorreo, String pCedula)
