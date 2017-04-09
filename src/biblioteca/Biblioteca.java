@@ -1,5 +1,6 @@
 package biblioteca;
 import java.util.Date;
+import java.util.*;
 
 
 public class Biblioteca {
@@ -9,10 +10,10 @@ public class Biblioteca {
     private String bibliotecologo;
     private Date fechaActual;
 
-    private Libro[] listaLibros;
-    private Revista[] listaRevistas;
-    private Cliente[] listaClientes;
 
+    private Vector listaLibros =  new Vector();
+    private Vector listaRevistas=  new Vector();
+    private Vector listaClientes=  new Vector();
 
     private boolean validarTelefono(int _numTel) {
         String telefono = Integer.toString(_numTel);
@@ -98,7 +99,13 @@ public class Biblioteca {
         }
         return true;
     }
-    
+    public boolean existeCliente(int _cedula) {
+        for (int i = 0; i < this.listaClientes.size(); i++) {
+            Cliente cliente = this.listaClientes.elementAt(i);
+
+   } 
+
+} 
 }
 
 //public void validarDatos(String pNombre, String pCorreo, String pCedula)
