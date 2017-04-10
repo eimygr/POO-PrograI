@@ -18,7 +18,7 @@ public class Biblioteca {
     private Vector<Libro> listaLibros =  new Vector<Libro>();
     private Vector<Revista> listaRevistas=  new Vector<Revista>();
     private Vector<Cliente> listaClientes=  new Vector<Cliente>();
-    private Vector<Venta> listaVentas =  new Vector<Libro>();
+    private Vector<Venta> listaVentas =  new Vector<Venta>();
     
     
     public Biblioteca(String _nombre, String _ubicacion, int _telefono
@@ -217,12 +217,12 @@ public class Biblioteca {
     }
     
     public void registrarLibro(String _nombre, String _autor, int _año, String
-            _editorial, String _tipo, boolean _prestado) {
+            _editorial, String _tipo, boolean _estado) {
         
         if (this.validarString(_autor) && this.validarString(_editorial) 
             && this.validarString(_tipo) && this.validarTipoLibro(_tipo) ) {
             // crear el Libro y lo agrega a la lista
-            Libro libroNuevo = new Libro(nombre, _autor, _año, _editorial)
+            Libro libroNuevo = new Libro(nombre, _autor, _año, _editorial, _estado);
             this.listaLibros.add(libroNuevo);
             
         } else {
@@ -258,7 +258,7 @@ public class Biblioteca {
     
     public void venderRevista(int _idCliente, Revista _revista) {
          if ( clienteRegistrado( _idCliente)) {
-           _revista.setEstado()
+           _revista.cambiarEstado();
              
          }
     }

@@ -6,5 +6,12 @@ public class Revista {
     private int num;
     private double costo;
     private String categoria;
+
+
+    public void cambiarEstado(){
+        estado = Estado.Vendida;
+    }
     
 }
+
+
