@@ -20,13 +20,82 @@ public class Biblioteca {
     private Vector listaClientes=  new Vector();
     
     
-    public Biblioteca() {
-    
-    
+    public Biblioteca(String _nombre, String _ubicacion, int _telefono
+            , String _bibliotecologo, Date _fechaActual, int _diasPrestamoLibro,
+            int _diasPrestamoRevista) {
+        this.nombre = _nombre;
+        this.ubicacion = _ubicacion;
+        this.bibliotecologo = _bibliotecologo;
+        this.telefono = _telefono;
+        this.fechaActual = _fechaActual;
+        
+        this.diasPrestamoLibro = _diasPrestamoLibro;
+        this.diasPrestamoRevista = _diasPrestamoRevista;
     }
     
+    public Biblioteca(String _nombre, String _ubicacion, int _telefono
+            , String _bibliotecologo, Date _fechaActual) {
+        this( _nombre,  _ubicacion,  _telefono
+            ,  _bibliotecologo,  _fechaActual,10,5);
+    }
     
+    // SETTERS Y GETTERS
+    public void setNombre(String _nombre) {
+        this.nombre = _nombre;
+    }
+    
+    public String getNombre() {
+        return this.nombre;
+    }
 
+    public void setUbicacion(String _ubicacion) {
+        this.ubicacion = _ubicacion;
+    }
+    
+    public String getUbicacion() {
+        return this.ubicacion;
+    } 
+    
+    public void setBibliotecologo(String _biblio) {
+        this.bibliotecologo = _biblio;
+    }
+    
+    public String getBibliotecologo() {
+        return this.bibliotecologo;
+    }
+    
+    public void setTelefono(int _telefono) {
+        this.telefono = _telefono;
+    }
+    
+    public int getTelefono() {
+        return this.telefono;
+    }
+    
+    public void setFechaActual(Date _fecha) {
+        this.fechaActual = _fecha;
+    }
+    
+    public Date getFechaActual() {
+        return this.fechaActual;
+    }
+    
+    public void setDiasPrestamoLibro(int _dias) {
+        this.diasPrestamoLibro = _dias;
+    }
+    
+    public int getDiasPrestamoLibro() {
+        return this.diasPrestamoLibro;
+    }
+    
+    public void setDiasPrestamoRevista(int _dias) {
+        this.diasPrestamoRevista = _dias;
+    }
+    
+    public int getDiasPrestamoRevista() {
+        return this.diasPrestamoRevista;
+    }
+    
     private boolean validarTelefono(int _numTel) {
         String telefono = Integer.toString(_numTel);
         return telefono.length() == 8;
@@ -119,14 +188,19 @@ public class Biblioteca {
         } 
    }
     */
-    
+  
     // REGISTRA EL CLIENTE
     public void registrarCliente(String _nombre, String _correo, int _id, int 
             _telefono ){
         if (this.validarString(_nombre) && this.validarCorreo(_correo) && 
                 this.validarTelefono(_telefono)){
-            // crear el cliente
-            // Cliente cliente = new Cliente( _nombre, _correo, _ id, _telefono);    
+            if (!this.clienteRegistrado(_id)) {
+                // si no existe el cliente 
+                // crea el cliente
+                // Cliente cliente = new Cliente( _nombre, _correo, _ id, _telefono);
+            
+            }
+            
         } else {
         
             out.println("Error al crear el cliente");
@@ -150,9 +224,25 @@ public class Biblioteca {
       if (this.validarString(_nombre)){
           // crear la revista
       }  
-        
-    
     }
+    
+    // usado para verificar si el cliente ya esta registrado en el sistema
+    public boolean clienteRegistrado(int _id) {
+        int largo = this.listaClientes.size();
+        for (int i = 0; i <= largo; i++) {
+            if (this.listaClientes.get(i).getId() == _id) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void comprarRevista(int _idCliente) {
+         if ( clienteRegistrado( _idCliente)) {
+         
+         }
+    }
+    
 }
 
 //public void validarDatos(String pNombre, String pCorreo, String pCedula)
