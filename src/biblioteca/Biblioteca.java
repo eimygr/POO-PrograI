@@ -96,6 +96,8 @@ public class Biblioteca {
         return this.diasPrestamoRevista;
     }
     
+    //VALIDACIONES
+    
     private boolean validarTelefono(int _numTel) {
         String telefono = Integer.toString(_numTel);
         return telefono.length() == 8;
@@ -122,9 +124,21 @@ public class Biblioteca {
         }
         return true;
     }
-   // metodo utilizado para Nombre, Autor 
+   // metodo utilizado para Nombre, Autor etc. Cuando se encesita un String sin 
+   // numeros 
     private boolean validarString(String _string) {
-        if (_string != null && _string.trim().length() > 0 && this.validarStringSinNumeros(_string))
+        if (_string != null && _string.trim().length() > 0 && 
+        this.validarStringSinNumeros(_string))
+            // si el string ingresado no es vacio, no es nullo y ademas no 
+            // contiene numeros (por que es el nombre de un autor o un editor etc)
+            return true;
+        return false;
+        
+    }
+    // este valida un string que puede contener numeros, asi como el nombre de 
+    // de un libro
+    private  boolean validarStringNumeros(String _string){
+        if (_string != null && _string.trim().length() > 0)
             return true;
         return false;
         
@@ -197,7 +211,8 @@ public class Biblioteca {
             if (!this.clienteRegistrado(_id)) {
                 // si no existe el cliente 
                 // crea el cliente
-                // Cliente cliente = new Cliente( _nombre, _correo, _ id, _telefono);
+                // Cliente clienteNuevo = new Cliente( _nombre, _correo, _ id, _telefono);
+                this.listaClientes.add(clienteNuevo);
             
             }
             
@@ -212,7 +227,9 @@ public class Biblioteca {
         
         if (this.validarString(_autor) && this.validarString(_editorial) 
             && this.validarString(_tipo) && this.validarTipoLibro(_tipo) ) {
-            // crear el Libro
+            // crear el Libro y lo agrega a la lista
+            this.listaLibros.add(libroNuevo);
+            
         } else {
             out.println("Error en los datos dados para registrar el Libro");
         
@@ -223,9 +240,14 @@ public class Biblioteca {
             _tipo, int _costo) {
       if (this.validarString(_nombre)){
           // crear la revista
-      }  
+          this.listaRevistas.add(revistaNueva);
+      }  else {
+          out.println("Error en los datos dados para registrar la Revista");
+      }
     }
     
+            
+            
     // usado para verificar si el cliente ya esta registrado en el sistema
     public boolean clienteRegistrado(int _id) {
         int largo = this.listaClientes.size();
@@ -239,9 +261,21 @@ public class Biblioteca {
     
     public void comprarRevista(int _idCliente) {
          if ( clienteRegistrado( _idCliente)) {
-         
+             // lista que va a contener las revistas 
+             Vector listaVenta = new Vector();
          }
     }
+ 
+    // antes de dar estos parametros se deben de ingresar un entero correcto
+    public void cambiarParametros(Date _fechaActual, int _diasPrestamoLibro, 
+            int _diasPrestamoRevista) {
+        
+        this.fechaActual = _fechaActual;
+        this.diasPrestamoLibro = _diasPrestamoLibro;
+        this.diasPrestamoRevista = _diasPrestamoRevista;
+    }
+    
+    
     
 }
 
