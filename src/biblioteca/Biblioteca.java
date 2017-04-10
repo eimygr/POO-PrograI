@@ -14,10 +14,10 @@ public class Biblioteca {
     private int diasPrestamoLibro;
     private int diasPrestamoRevista;
 
-
-    private Vector listaLibros =  new Vector();
-    private Vector listaRevistas=  new Vector();
-    private Vector listaClientes=  new Vector();
+    // listas dinamicas
+    private Vector<Libro> listaLibros =  new Vector<Libro>();
+    private Vector<Revista> listaRevistas=  new Vector<Revista>();
+    private Vector<Cliente> listaClientes=  new Vector<Cliente>();
     
     
     public Biblioteca(String _nombre, String _ubicacion, int _telefono
@@ -263,9 +263,15 @@ public class Biblioteca {
          if ( clienteRegistrado( _idCliente)) {
              // lista que va a contener las revistas 
              Vector listaVenta = new Vector();
+             
          }
     }
  
+    public void venderRevista(Revista _revista) {
+            ;
+    }
+    
+    
     // antes de dar estos parametros se deben de ingresar un entero correcto
     public void cambiarParametros(Date _fechaActual, int _diasPrestamoLibro, 
             int _diasPrestamoRevista) {
@@ -274,6 +280,7 @@ public class Biblioteca {
         this.diasPrestamoLibro = _diasPrestamoLibro;
         this.diasPrestamoRevista = _diasPrestamoRevista;
     }
+    
     
     
     
