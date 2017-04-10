@@ -18,6 +18,7 @@ public class Biblioteca {
     private Vector<Libro> listaLibros =  new Vector<Libro>();
     private Vector<Revista> listaRevistas=  new Vector<Revista>();
     private Vector<Cliente> listaClientes=  new Vector<Cliente>();
+    private Vector<Venta> listaVentas =  new Vector<Libro>();
     
     
     public Biblioteca(String _nombre, String _ubicacion, int _telefono
@@ -194,14 +195,7 @@ public class Biblioteca {
         }
         return true;
     }
-    /*
-    public boolean existeCliente(int _cedula) {
-        for (int i = 0; i < this.listaClientes.size(); i++) {
-            Cliente cliente = this.listaClientes.elementAt(i);
 
-        } 
-   }
-    */
   
     // REGISTRA EL CLIENTE
     public void registrarCliente(String _nombre, String _correo, int _id, int 
@@ -211,7 +205,7 @@ public class Biblioteca {
             if (!this.clienteRegistrado(_id)) {
                 // si no existe el cliente 
                 // crea el cliente
-                // Cliente clienteNuevo = new Cliente( _nombre, _correo, _ id, _telefono);
+                Cliente clienteNuevo = new Cliente( _nombre, _correo, _id, _telefono);
                 this.listaClientes.add(clienteNuevo);
             
             }
@@ -222,12 +216,13 @@ public class Biblioteca {
         }
     }
     
-    public void registrarLibro(String _nombre, String _autor, int _anho, String 
+    public void registrarLibro(String _nombre, String _autor, int _año, String
             _editorial, String _tipo, boolean _prestado) {
         
         if (this.validarString(_autor) && this.validarString(_editorial) 
             && this.validarString(_tipo) && this.validarTipoLibro(_tipo) ) {
             // crear el Libro y lo agrega a la lista
+            Libro libroNuevo = new Libro(nombre, _autor, _año, _editorial)
             this.listaLibros.add(libroNuevo);
             
         } else {
@@ -235,12 +230,14 @@ public class Biblioteca {
         
         }
     }
-    
-    public void registrarRevista(String _nombre, int _numero, int _anho, boolean
+
+
+    public void registrarRevista(String _nombre, int _numero, int _año, boolean
             _tipo, int _costo) {
       if (this.validarString(_nombre)){
-          // crear la revista
+          Revista revistaNueva = new Revista(_nombre, _numero, _año, _tipo, _costo);
           this.listaRevistas.add(revistaNueva);
+
       }  else {
           out.println("Error en los datos dados para registrar la Revista");
       }
@@ -259,17 +256,13 @@ public class Biblioteca {
         return false;
     }
     
-    public void comprarRevista(int _idCliente) {
+    public void venderRevista(int _idCliente, Revista _revista) {
          if ( clienteRegistrado( _idCliente)) {
-             // lista que va a contener las revistas 
-             Vector listaVenta = new Vector();
+           _revista.setEstado()
              
          }
     }
- 
-    public void venderRevista(Revista _revista) {
-            ;
-    }
+
     
     
     // antes de dar estos parametros se deben de ingresar un entero correcto
