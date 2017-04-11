@@ -327,6 +327,25 @@ public class Biblioteca {
         this.diasPrestamoRevista = _diasPrestamoRevista;
     }
     
+        
+    public void consultarLibro(Estado _estado) {
+        // crear la lista
+        Vector<Libro> listaConsultada = new Vector<Libro>(); 
+        
+           for (int i = 0; i <= this.listaLibros.size(); i++) {
+               // si el libro tiene el mismo estado que esta recibiendo el metodo
+               if (this.listaLibros.get(i).getEstado() == _estado) {
+
+		// método get estado :)
+                   listaConsultada.add(this.listaLibros.get(i));
+               }   
+           }
+           // aca se puede hacer una funcion que lo que hace es imprimir todo 
+           // en la interfaz
+    
+    }
+    
+    
     
     
     
