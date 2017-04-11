@@ -8,13 +8,14 @@ package biblioteca;
     private double costo;
     private String categoria;
     private Cliente cliente;
+    private boolean tipo;
 
 
     public void setEstado(Estado _estado){
         estado = _estado;
     }
 
-    //Falta el setCliente
+    //Falta el setCliente   :):)
     
 }
 

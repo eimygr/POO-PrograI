@@ -20,6 +20,7 @@ public class Cliente {
     public int getTelefono(){return telefono;}
     public void setMorosidad(boolean estado){esta_moroso = estado;}
 
+    // por favor hacer un metodo get moroso :):)
 
 
 }

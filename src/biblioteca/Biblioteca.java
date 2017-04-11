@@ -296,18 +296,27 @@ public class Biblioteca {
                 _revista.setCliente(cliente);
 
                 Prestamo nuevoPrest = new Prestamo (fechaActual, _revista, diasPrestamoRevista);
+                listaPrestamo.add(nuevoPrest);
 
             }
         }
     }
 
-    public void prestarRevista(int _idCliente, Revista _revista) {
-        if ( clienteRegistrado( _idCliente)) {
-            _revista.setEstado(Estado.Prestada);
 
+    public void prestarLibro(int _idCliente, Libro _libro) {
+        if ( clienteRegistrado( _idCliente)&& ) {
+            Cliente cliente = retCliente(_idCliente);
+            if (!cliente.getMoroso()) {
+                _libro.cambiarEstado();
+                _libro.setCliente(cliente);
+
+                Prestamo nuevoPrest = new Prestamo (fechaActual, _libro, diasPrestamoRevista);
+                listaPrestamo.add(nuevoPrest);
+
+            }
         }
     }
-    
+
     
     // antes de dar estos parametros se deben de ingresar un entero correcto
     public void cambiarParametros(Date _fechaActual, int _diasPrestamoLibro, 

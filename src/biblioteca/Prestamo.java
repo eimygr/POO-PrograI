@@ -5,9 +5,7 @@ import javax.mail.internet.*;
 import java.util.Date;
 import java.util.Properties;
 
-/**
- * Created by Eimy on 05/04/2017.
- */
+
 public class Prestamo {
     private Date fechaInicial;
     private Articulo articulo;
