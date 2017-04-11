@@ -8,8 +8,8 @@ public class Revista {
     private String categoria;
 
 
-    public void cambiarEstado(){
-        estado = Estado.Vendida;
+    public void setEstado(Estado _estado){
+        estado = _estado;
     }
     
 }
