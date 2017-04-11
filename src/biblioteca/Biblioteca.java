@@ -19,6 +19,7 @@ public class Biblioteca {
     private Vector<Revista> listaRevistas=  new Vector<Revista>();
     private Vector<Cliente> listaClientes=  new Vector<Cliente>();
     private Vector<Venta> listaVentas =  new Vector<Venta>();
+    private Vector<Prestamo> listaPrestamo =  new Vector<Prestamo>();
     
     
     public Biblioteca(String _nombre, String _ubicacion, int _telefono
@@ -274,7 +275,7 @@ public class Biblioteca {
 
     public void venderRevista(int _idCliente, Revista _revista) {
 
-         if ( clienteRegistrado( _idCliente)) {
+         if ( clienteRegistrado( _idCliente) && _revista.getEstado() == Estado.Disponible) {
              Cliente cliente = retCliente(_idCliente);
              _revista.setEstado(Estado.Vendida);
              _revista.setCliente(cliente);
@@ -288,9 +289,15 @@ public class Biblioteca {
 
 
     public void prestarRevista(int _idCliente, Revista _revista) {
-        if ( clienteRegistrado( _idCliente)) {
-            _revista.setEstado(Estado.Prestada);
+        if ( clienteRegistrado( _idCliente)&& ) {
+            Cliente cliente = retCliente(_idCliente);
+            if (!cliente.getMoroso()) {
+                _revista.setEstado(Estado.Prestada);
+                _revista.setCliente(cliente);
 
+                Prestamo nuevoPrest = new Prestamo (fechaActual, _revista, diasPrestamoRevista);
+
+            }
         }
     }
 

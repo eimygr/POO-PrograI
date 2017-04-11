@@ -1,6 +1,7 @@
 package biblioteca;
 
-public class Revista {
+
+ public class Revista extends Articulo{
     private static String id;
     private Estado estado;
     private int num;
