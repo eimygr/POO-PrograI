@@ -196,7 +196,21 @@ public class Biblioteca {
         return true;
     }
 
-  
+
+    public Cliente retCliente(int _id){  //Busca un cliente segun el Id y lo retorna
+
+        int largo = listaClientes.size();
+        for (int i = 0; i <= largo; i++) {
+
+            Cliente cliente = listaClientes.get(i);
+
+            if (cliente.getId() == _id) {
+                return cliente;
+            }
+
+        }
+    }
+
     // REGISTRA EL CLIENTE
     public void registrarCliente(String _nombre, String _correo, int _id, int 
             _telefono ){
@@ -222,7 +236,7 @@ public class Biblioteca {
         if (this.validarString(_autor) && this.validarString(_editorial) 
             && this.validarString(_tipo) && this.validarTipoLibro(_tipo) ) {
             // crear el Libro y lo agrega a la lista
-            Libro libroNuevo = new Libro(nombre, _autor, _año, _editorial, _estado);
+            Libro libroNuevo = new Libro(_nombre, _autor, _año, _editorial, _estado);
             this.listaLibros.add(libroNuevo);
             
         } else {
@@ -255,14 +269,37 @@ public class Biblioteca {
         }
         return false;
     }
-    
+
+
+
     public void venderRevista(int _idCliente, Revista _revista) {
+
          if ( clienteRegistrado( _idCliente)) {
-           _revista.cambiarEstado();
-             
+             Cliente cliente = retCliente(_idCliente);
+             _revista.setEstado(Estado.Vendida);
+             _revista.setCliente(cliente);
+
+           Venta nuevaVenta = new Venta(fechaActual, _revista, cliente);
+           listaVentas.add(nuevaVenta);
+
          }
+
     }
 
+
+    public void prestarRevista(int _idCliente, Revista _revista) {
+        if ( clienteRegistrado( _idCliente)) {
+            _revista.setEstado(Estado.Prestada);
+
+        }
+    }
+
+    public void prestarRevista(int _idCliente, Revista _revista) {
+        if ( clienteRegistrado( _idCliente)) {
+            _revista.setEstado(Estado.Prestada);
+
+        }
+    }
     
     
     // antes de dar estos parametros se deben de ingresar un entero correcto

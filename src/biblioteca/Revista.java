@@ -6,11 +6,14 @@ public class Revista {
     private int num;
     private double costo;
     private String categoria;
+    private Cliente cliente;
 
 
     public void setEstado(Estado _estado){
         estado = _estado;
     }
+
+    //Falta el setCliente
     
 }
 
