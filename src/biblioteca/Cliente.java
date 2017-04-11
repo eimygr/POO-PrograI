@@ -17,10 +17,14 @@ public class Cliente {
 
     //GETTERS Y SETTER
     public int getId(){return cedula;}
+    public String getNombre(){return nombre;}
+    public String getCorreo(){return correo;}
     public int getTelefono(){return telefono;}
-    public void setMorosidad(boolean estado){esta_moroso = estado;}
+    public void setMoroso(boolean estado){esta_moroso = estado;}
+    public boolean getMoroso(){return esta_moroso;}
 
     // por favor hacer un metodo get moroso :):)
+    // R/Sorry, empecé a hacer lo del correo y deje de lado al cliente xD
 
 
 }
