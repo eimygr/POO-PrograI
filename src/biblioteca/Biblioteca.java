@@ -101,8 +101,8 @@ public class Biblioteca {
     //VALIDACIONES
     
     private boolean validarTelefono(int _numTel) {
-        String telefono = Integer.toString(_numTel);
-        return telefono.length() == 8;
+        String _telefono = Integer.toString(_numTel);
+        return _telefono.length() == 8;
     }
 
     private boolean validarCorreo(String _correoE) {
@@ -232,7 +232,7 @@ public class Biblioteca {
     }
     
     public void registrarLibro(String _nombre, String _autor, int _año, String
-            _editorial, String _tipo, boolean _estado) {
+            _editorial, String _tipo, Estado _estado) {
         
         if (this.validarString(_autor) && this.validarString(_editorial) 
             && this.validarString(_tipo) && this.validarTipoLibro(_tipo) ) {
@@ -247,10 +247,10 @@ public class Biblioteca {
     }
 
 
-    public void registrarRevista(String _nombre, int _numero, int _año, boolean
-            _tipo, int _costo) {
+    public void registrarRevista(String _nombre, int _numero, int _año, Categoria
+            _categoria, int _costo) {
       if (this.validarString(_nombre)){
-          Revista revistaNueva = new Revista(_nombre, _numero, _año, _tipo, _costo);
+          Revista revistaNueva = new Revista(_nombre, _numero, _año, _categoria, _costo);
           this.listaRevistas.add(revistaNueva);
 
       }  else {
