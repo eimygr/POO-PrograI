@@ -280,7 +280,7 @@ public class Biblioteca {
              _revista.setEstado(Estado.Vendida);
              _revista.setCliente(cliente);
 
-           Venta nuevaVenta = new Venta(fechaActual, _revista, cliente);
+           Venta nuevaVenta = new Venta(fechaActual,this.listaRevistas, cliente, _revista.getNombre());
            listaVentas.add(nuevaVenta);
 
          }
@@ -289,7 +289,7 @@ public class Biblioteca {
 
 
     public void prestarRevista(int _idCliente, Revista _revista) {
-        if ( clienteRegistrado( _idCliente)&& ) {
+        if ( clienteRegistrado( _idCliente) ) {
             Cliente cliente = retCliente(_idCliente);
             if (!cliente.getMoroso()) {
                 _revista.setEstado(Estado.Prestada);
