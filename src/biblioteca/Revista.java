@@ -18,10 +18,11 @@ package biblioteca;
         num = _numero;
         año = _año;
         categoria = _categoria;
-        costo = _costo;
-        
-        
-        
+        costo = _costo;  
+    }
+    
+    public String getNombre(){
+        return nombre;
     }
 
     public void CambiarEstado(Estado _estado){
@@ -39,7 +40,7 @@ package biblioteca;
     public void setCliente(Cliente _cliente){
         cliente = _cliente;
     }
-
+     
     //Falta el setCliente   :):)
     
 }
