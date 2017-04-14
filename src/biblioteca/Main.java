@@ -11,7 +11,7 @@ public class Main {
         //Biblioteca.registrarExcel(archivo);
         Biblioteca a = new Biblioteca();
         
-        a.CrearExcel();
+        a.LeerExcel();
         
     }
 

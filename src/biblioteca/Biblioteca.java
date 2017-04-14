@@ -3,6 +3,34 @@ import java.util.Date;
 import java.util.*;
 import static java.lang.System.*;
 
+//Librerias y archivos para leer de Excel
+import javax.swing.JFileChooser;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+
+
+import org.apache.poi.ss.usermodel.Cell;
+
+import org.apache.poi.ss.usermodel.Row;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Date;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+//End Librerias y archivos para leer de Excel
+
 
 public class Biblioteca {
     private String nombre;
@@ -21,6 +49,8 @@ public class Biblioteca {
     private Vector<Venta> listaVentas =  new Vector<Venta>();
     private Vector<Prestamo> listaPrestamo =  new Vector<Prestamo>();
     
+    public Biblioteca(){
+    }
     
     public Biblioteca(String _nombre, String _ubicacion, int _telefono
             , String _bibliotecologo, Date _fechaActual, int _diasPrestamoLibro,
@@ -232,12 +262,12 @@ public class Biblioteca {
     }
     
     public void registrarLibro(String _nombre, String _autor, int _año, String
-            _editorial, String _tipo, Estado _estado) {
+            _editorial, Genero _genero) {
         
         if (this.validarString(_autor) && this.validarString(_editorial) 
-            && this.validarString(_tipo) && this.validarTipoLibro(_tipo) ) {
+            && this.validarString(_nombre) ) {
             // crear el Libro y lo agrega a la lista
-            Libro libroNuevo = new Libro(_nombre, _autor, _año, _editorial, _estado);
+            Libro libroNuevo = new Libro(_nombre, _autor, _año, _editorial, _genero);
             this.listaLibros.add(libroNuevo);
             
         } else {
@@ -247,7 +277,7 @@ public class Biblioteca {
     }
 
 
-    public void registrarRevista(String _nombre, int _numero, int _año, Categoria
+    public void registrarRevista(String _nombre, int _numero, int _año, String
             _categoria, int _costo) {
       if (this.validarString(_nombre)){
           Revista revistaNueva = new Revista(_nombre, _numero, _año, _categoria, _costo);
@@ -361,8 +391,115 @@ public class Biblioteca {
            // en la interfaz
     
     }
+
     
-    
+    public void LeerExcel() {
+                String c1Val = "";
+                String f1Val = "";
+                double f1Val2 = 0.0;
+                double c1Val2 = 0.0;
+		try {
+                        final JFileChooser fc = new JFileChooser();
+                        fc.showOpenDialog(fc);
+                        
+                        java.io.File file = fc.getSelectedFile();
+                        
+                        String Filename = fc.getName(file);
+                        
+			FileInputStream fileInputStream = new FileInputStream(Filename);
+			XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
+			XSSFSheet worksheet = workbook.getSheetAt(0);
+
+			
+                        int cont = 0;
+                        while (true){
+                            XSSFRow row1 = worksheet.getRow(cont);
+                            XSSFCell cellA1 = row1.getCell((short) 0);
+                            String a1Val = cellA1.getStringCellValue();
+
+                            XSSFCell cellB1 = row1.getCell((short) 1);
+                            String b1Val = cellB1.getStringCellValue();
+                            
+                            try{
+                                XSSFCell cellC1 = row1.getCell((short) 2);
+                                c1Val = cellC1.getStringCellValue();
+                                
+                            } catch(IllegalStateException e){
+                                XSSFCell cellC1 = row1.getCell((short) 2);
+                                c1Val2 = cellC1.getNumericCellValue();
+                            }
+                            
+                            XSSFCell cellD1 = row1.getCell((short) 3);
+                            double d1Val = cellD1.getNumericCellValue();
+
+                            XSSFCell cellE1 = row1.getCell((short) 4);
+                            String e1Val = cellE1.getStringCellValue();
+                            
+                            try{
+                                XSSFCell cellF1 = row1.getCell((short) 5);
+                                f1Val = cellF1.getStringCellValue();
+                            } catch(IllegalStateException e){
+                                XSSFCell cellF1 = row1.getCell((short) 5);
+                                f1Val2 = cellF1.getNumericCellValue();
+                            }
+                            System.out.println("A1: " + a1Val);
+                            System.out.println("B1: " + b1Val);
+                            System.out.println("C1: " + c1Val);
+                            System.out.println("C1: " + c1Val2);
+                            System.out.println("D1: " + d1Val);
+                            System.out.println("E1: " + e1Val);
+                            System.out.println("F1: " + f1Val + "\n");
+                            System.out.println("F1: " + f1Val2);
+                            cont++;
+                            Genero generoLibro = Genero.Ensayo;
+                            
+                            switch(f1Val){
+                                case "Ensayo": generoLibro = Genero.Ensayo;
+                                break;
+                                case "Novela": generoLibro = Genero.Novela;
+                                break;
+                                case "Infantil": generoLibro = Genero.Infantil;
+                                break;
+                                case "Poesia": generoLibro = Genero.Poesia;
+                                break;
+                                case "Teatro": generoLibro = Genero.Teatro;
+                                break;
+                                
+                            }
+                            
+                            int intd1Val = (int) d1Val;
+                            
+                            if (a1Val.equals("Libro")){
+                                registrarLibro(b1Val, c1Val, intd1Val, e1Val, generoLibro);
+                            }
+                            else{
+                                if (a1Val.equals("Revista")){
+                                int intf1Val2 = (int) f1Val2;
+                                int intc1Val2 = (int) c1Val2;
+                                registrarRevista(b1Val, intc1Val2, intd1Val, e1Val, intf1Val2);
+                                }
+                            }
+                        }
+                        
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e){
+                        System.out.println("Yap");
+                }
+                
+	}
+}
+    }   
+
+
+/* Bibliografia
+https://poi.apache.org/apidocs/org/apache/poi/ss/usermodel/Row.html
+https://docs.oracle.com/javase/7/docs/api/java/io/File.html
+Para descargar xmlbeans: http://www.java2s.com/Code/Jar/x/Downloadxmlbeans230jar.htm
+https://mvnrepository.com/artifact/org.apache.commons/commons-collections4/4.0
+*/
     
     
     

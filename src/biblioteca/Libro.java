@@ -6,18 +6,18 @@ public class Libro extends Articulo {
     private Estado estado;
     private String autor;
     private String editorial;
-    private String genero;
+    private Genero genero;
     private int diasPrestamo;
     private int año;
     private String nombre;
     private Cliente cliente;
     
-    public Libro(String _nombre, String _autor, int _año, String _editorial, Estado _estado){
+    public Libro(String _nombre, String _autor, int _año, String _editorial, Genero _genero){
         nombre = _nombre;
         autor = _autor;
         año = _año;
         editorial = _editorial;
-        estado = _estado;
+        genero = _genero;
         
         
     }

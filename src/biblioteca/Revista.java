@@ -6,18 +6,18 @@ package biblioteca;
     private Estado estado;
     private int num;
     private double costo;
-    private Categoria categoria;
+    //private String categoria;
     private Cliente cliente;
-    //private boolean tipo;
+    private String tipo;
     private String nombre;
     private int año;
 
-    public Revista(String _nombre, int _numero, int _año, Categoria _categoria
+    public Revista(String _nombre, int _numero, int _año, String _tipo
             , double _costo){
         nombre = _nombre;
         num = _numero;
         año = _año;
-        categoria = _categoria;
+        tipo = _tipo;
         costo = _costo;  
     }
     
