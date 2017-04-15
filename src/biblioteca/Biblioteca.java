@@ -338,7 +338,7 @@ public class Biblioteca {
         if ( clienteRegistrado( _idCliente)&& !retCliente( _idCliente).getMoroso()) {  //falta una segunda expresion despues del &&
             Cliente cliente = retCliente(_idCliente);
             if (!cliente.getMoroso()) {
-                _libro.CambiarEstado(Estado.Prestada);  //No estaba escrito el metodo en la clase libro
+                _libro.CambiarEstado();  //No estaba escrito el metodo en la clase libro
                 _libro.setCliente(cliente);
 
                 Prestamo nuevoPrest = new Prestamo (fechaActual, _libro, diasPrestamoRevista);
