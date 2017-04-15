@@ -1,3 +1,4 @@
+
 package biblioteca;
 import java.util.Date;
 import java.util.*;
@@ -130,11 +131,24 @@ public class Biblioteca {
     
     //VALIDACIONES
     
+    /**
+     * 
+     * 
+     * @param _numTel numero de telefono
+     * @return  Retorna si el numero de telefono es valido
+     */
+    
     private boolean validarTelefono(int _numTel) {
         String _telefono = Integer.toString(_numTel);
         return _telefono.length() == 8;
     }
 
+    
+    /**
+     * 
+     * @param _correoE Recibe un string el cual es un correo electronico 
+     * @return Retorna si el string es un correo adecuado
+     */
     private boolean validarCorreo(String _correoE) {
         if (!this.validarString(_correoE))
             return false;
@@ -158,6 +172,13 @@ public class Biblioteca {
     }
    // metodo utilizado para Nombre, Autor etc. Cuando se encesita un String sin 
    // numeros 
+    
+    
+    /**
+     * 
+     * @param _string recibe un string
+     * @return Retorna true si es un string valido
+     */
     private boolean validarString(String _string) {
         if (_string != null && _string.trim().length() > 0 && 
         this.validarStringSinNumeros(_string))
@@ -167,14 +188,22 @@ public class Biblioteca {
         return false;
         
     }
-    // este valida un string que puede contener numeros, asi como el nombre de 
-    // de un libro
+    /**
+     * 
+     * @param _string recibe un string y verifica que no tenga numeros
+     * @return Retorna si true si es un string sin numeros
+     */
     private  boolean validarStringNumeros(String _string){
         if (_string != null && _string.trim().length() > 0)
             return true;
         return false;
         
     }
+    /**
+     * 
+     * @param _tipo Recibe un string el cual es el tipo de libro 
+     * @return Retorna true si es (novela , teatro, poesia, infantil, o ensayo)
+     */
     private boolean validarTipoLibro(String _tipo){
         if (!this.validarString(_tipo))
             return false;
@@ -192,12 +221,17 @@ public class Biblioteca {
             case "infantil":
                 return true;
                 
-            case "ensayos":
+            case "ensayo":
                 return true;
         }
         return false;
     }
     
+    /**
+     * 
+     * @param _string recibe un string
+     * @return  retorna true si el string no contiene numeros
+     */
     private boolean validarStringSinNumeros(String _string) {
         for (int i = 0; i < _string.length(); i++) {
             char letra = _string.charAt(i);
@@ -227,7 +261,11 @@ public class Biblioteca {
         return true;
     }
 
-
+    /**
+     * 
+     * @param _id recibe un id (entero)  
+     * @return retorna el objeto cliente con el ID dado
+     */
     public Cliente retCliente(int _id){  //Busca un cliente segun el Id y lo retorna
 
         int largo = listaClientes.size();
@@ -244,6 +282,19 @@ public class Biblioteca {
     }
 
     // REGISTRA EL CLIENTE
+    
+    /**
+     * 
+     * 
+     * @param _nombre nombre del cliente string
+     * @param _correo correo del cliente string
+     * @param _id ID del cliente, int 
+     * @param _telefono num de telefono del cliente, int
+     * 
+     * Si el Usuario da alguna da algun parametro erroneo el cliente no se
+     * registra
+     * 
+     */
     public void registrarCliente(String _nombre, String _correo, int _id, int 
             _telefono ){
         if (this.validarString(_nombre) && this.validarCorreo(_correo) && 
@@ -261,7 +312,14 @@ public class Biblioteca {
             out.println("Error al crear el cliente");
         }
     }
-    
+    /**
+     * 
+     * @param _nombre string nombre del Libro (no puede contener numeros)
+     * @param _autor string nombre del autor 
+     * @param _año int año del libro
+     * @param _editorial string editorial del libro
+     * @param _genero  string genero del libro 
+     */
     public void registrarLibro(String _nombre, String _autor, int _año, String
             _editorial, Genero _genero) {
         
