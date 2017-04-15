@@ -22,9 +22,14 @@ public class Libro extends Articulo {
         
     }
 
-    public void CambiarEstado(Estado _estado){
-        estado = _estado;
+    public void CambiarEstado(){
+        if(estado == Estado.Disponible){
+            estado = Estado.Prestada;
+        }else{
+            estado = Estado.Disponible;
+        }
     }
+
     public void setEstado(Estado _estado){
         estado = _estado;
     }

@@ -6,7 +6,6 @@ package biblioteca;
     private Estado estado;
     private int num;
     private double costo;
-    //private String categoria;
     private Cliente cliente;
     private String tipo;
     private String nombre;
@@ -23,10 +22,6 @@ package biblioteca;
     
     public String getNombre(){
         return nombre;
-    }
-
-    public void CambiarEstado(Estado _estado){
-        estado = _estado;
     }
     
     public void setEstado(Estado _estado){

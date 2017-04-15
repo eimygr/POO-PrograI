@@ -5,5 +5,4 @@ public abstract class Articulo {
     private int año;
     private boolean tipo;
 
-    public abstract void CambiarEstado(Estado _estado);
 }
