@@ -240,6 +240,7 @@ public class Biblioteca {
             }
 
         }
+        return null; //Si no tiene un return por defecto, no compila
     }
 
     // REGISTRA EL CLIENTE
@@ -334,10 +335,10 @@ public class Biblioteca {
 
 
     public void prestarLibro(int _idCliente, Libro _libro) {
-        if ( clienteRegistrado( _idCliente)&& ) {
+        if ( clienteRegistrado( _idCliente)&& !retCliente( _idCliente).getMoroso()) {  //falta una segunda expresion despues del &&
             Cliente cliente = retCliente(_idCliente);
             if (!cliente.getMoroso()) {
-                _libro.cambiarEstado();
+                _libro.CambiarEstado(Estado.Prestada);  //No estaba escrito el metodo en la clase libro
                 _libro.setCliente(cliente);
 
                 Prestamo nuevoPrest = new Prestamo (fechaActual, _libro, diasPrestamoRevista);
@@ -491,7 +492,7 @@ public class Biblioteca {
                 
 	}
 }
-    }  
+    //} //con estas llaves me pedia una clase, un enum o una interfaz y por ende error xq no habia nada
 
 
 /* Bibliografia
@@ -503,6 +504,6 @@ https://mvnrepository.com/artifact/org.apache.commons/commons-collections4/4.0
     
     
     
-}
+//}
 
 //public void validarDatos(String pNombre, String pCorreo, String pCedula)
