@@ -3,7 +3,8 @@ package biblioteca;
 public class Main {
     
     public static void main(String[] args) {
-        //Prestamo.EnviarCorreo("eimygr@gmail.com", "Eimy, lesbiana");
+      /* 
+    //Prestamo.EnviarCorreo("eimygr@gmail.com", "Eimy, lesbiana");
         String[] archivo = new String[1];
         archivo[0] = "Libros";
         
@@ -12,8 +13,12 @@ public class Main {
         Biblioteca a = new Biblioteca();
         
         a.LeerExcel();
-        
+      */  
+      InterfazBiblioteca GUI = new InterfazBiblioteca();
+      GUI.setVisible(true);
+    
     }
 
+    
 
-}
+    
