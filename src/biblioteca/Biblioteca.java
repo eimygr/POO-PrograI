@@ -546,6 +546,9 @@ public class Biblioteca {
     public Vector<Libro> getListaLibros(){
         return listaLibros;
     }
+    public Vector<Revista> getListaRevistas(){
+        return listaRevistas;
+    }
     /**
      *
      * Metodo que lee un archivo de Excel para insertar libros y revistas al sistema

@@ -52,6 +52,10 @@ package biblioteca;
     public void setCliente(Cliente _cliente){
         cliente = _cliente;
     }
+    
+    public String getTipo(){
+    return tipo;
+    }
      
     //Falta el setCliente   :):)
     

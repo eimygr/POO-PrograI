@@ -76,6 +76,11 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         botonRegistrarPrestamo = new javax.swing.JButton();
         idPrestamoText = new javax.swing.JTextField();
+        ventanaVentaRevista = new javax.swing.JFrame();
+        label1 = new java.awt.Label();
+        label2 = new java.awt.Label();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jlistaRevistasVenta = new javax.swing.JList<>();
         etiquetaApp = new javax.swing.JLabel();
         registrarBoton = new javax.swing.JButton();
         excelBoton = new javax.swing.JButton();
@@ -83,6 +88,7 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         botonRegistrarRevista = new javax.swing.JButton();
         botonConfig = new javax.swing.JButton();
         botonPrestamo = new javax.swing.JButton();
+        botonVentaRevista = new javax.swing.JButton();
 
         ventanaRegistroManual.setMinimumSize(new java.awt.Dimension(400, 400));
 
@@ -454,6 +460,49 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addGap(29, 29, 29))
         );
 
+        ventanaVentaRevista.setMinimumSize(new java.awt.Dimension(500, 500));
+        ventanaVentaRevista.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                ventanaVentaRevistaWindowActivated(evt);
+            }
+        });
+
+        label1.setText("Venta de revista");
+
+        label2.setText("Seleccione la revista:");
+
+        jScrollPane2.setViewportView(jlistaRevistasVenta);
+
+        javax.swing.GroupLayout ventanaVentaRevistaLayout = new javax.swing.GroupLayout(ventanaVentaRevista.getContentPane());
+        ventanaVentaRevista.getContentPane().setLayout(ventanaVentaRevistaLayout);
+        ventanaVentaRevistaLayout.setHorizontalGroup(
+            ventanaVentaRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaVentaRevistaLayout.createSequentialGroup()
+                .addGroup(ventanaVentaRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ventanaVentaRevistaLayout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ventanaVentaRevistaLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        ventanaVentaRevistaLayout.setVerticalGroup(
+            ventanaVentaRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaVentaRevistaLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(ventanaVentaRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(101, Short.MAX_VALUE))
+        );
+
+        label2.getAccessibleContext().setAccessibleName("");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         etiquetaApp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -509,6 +558,13 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
             }
         });
 
+        botonVentaRevista.setText("Compra de revista");
+        botonVentaRevista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonVentaRevistaMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -524,7 +580,8 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                     .addComponent(etiquetaApp)
                     .addComponent(botonRegistrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonRegistrarRevista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonVentaRevista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -542,7 +599,9 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addComponent(excelBoton)
                 .addGap(18, 18, 18)
                 .addComponent(botonPrestamo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(botonVentaRevista)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(botonConfig))
         );
 
@@ -779,6 +838,30 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_idPrestamoTextActionPerformed
 
+    private void ventanaVentaRevistaWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanaVentaRevistaWindowActivated
+        Vector<Revista> listaRevista = mainBiblioteca.getListaRevistas();
+
+        javax.swing.DefaultListModel<String> listaLibrosString =  new javax.swing.DefaultListModel<String>();
+
+        int largo = listaRevista.size();
+        if (largo>0) {
+            for (int i = 0; i < largo; i++) {
+                if (listaRevista.get(i).getTipo() == "Venta"){
+                    listaLibrosString.addElement(listaRevista.get(i).getNombre());
+                }
+            }
+        }
+        else{
+            System.out.println("No hay books");
+        }
+
+        jlistaRevistasVenta.setModel(listaLibrosString);
+    }//GEN-LAST:event_ventanaVentaRevistaWindowActivated
+
+    private void botonVentaRevistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVentaRevistaMouseClicked
+        ventanaVentaRevista.setVisible(true);
+    }//GEN-LAST:event_botonVentaRevistaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -824,6 +907,7 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JButton botonRegistrarCliente;
     private javax.swing.JButton botonRegistrarPrestamo;
     private javax.swing.JButton botonRegistrarRevista;
+    private javax.swing.JButton botonVentaRevista;
     private javax.swing.JButton botonVentanaRegistrarCliente;
     private javax.swing.JButton botonVentanaRegistrarRevista;
     private javax.swing.JLabel categoriaLabel;
@@ -849,7 +933,11 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> jlistaLibrosPrestamo;
+    private javax.swing.JList<String> jlistaRevistasVenta;
+    private java.awt.Label label1;
+    private java.awt.Label label2;
     private javax.swing.JTextField nombreLibroText;
     private javax.swing.JTextField prestamoLibrosText;
     private javax.swing.JTextField prestamoRevistaText;
@@ -866,5 +954,6 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JFrame ventanaRegistrarCliente;
     private javax.swing.JFrame ventanaRegistroManual;
     private javax.swing.JFrame ventanaRegistroRevista;
+    private javax.swing.JFrame ventanaVentaRevista;
     // End of variables declaration//GEN-END:variables
 }
