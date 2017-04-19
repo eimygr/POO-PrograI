@@ -1,9 +1,9 @@
 package biblioteca;
 
 /**
- * Created by Eimy on 05/04/2017.
+ * Enumerate utilizado en Estado para Libro y Revista
+ *
  */
-
 public enum Estado {
     Disponible, Vendida, Prestada
 

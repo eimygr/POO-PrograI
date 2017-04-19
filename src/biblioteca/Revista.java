@@ -7,7 +7,8 @@ package biblioteca;
  * 
  */
  public class Revista extends Articulo{
-    private static String id;
+    private static int idTotal;
+    private String id;
     private Estado estado;
     private int num;
     private double costo;
@@ -27,6 +28,8 @@ package biblioteca;
      */
     public Revista(String _nombre, int _numero, int _año, String _tipo
             , double _costo){
+        idTotal ++;
+        id = "R-" + Integer.toString(idTotal);
         nombre = _nombre;
         num = _numero;
         año = _año;

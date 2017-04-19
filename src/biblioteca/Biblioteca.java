@@ -79,13 +79,22 @@ public class Biblioteca {
         this.diasPrestamoLibro = _diasPrestamoLibro;
         this.diasPrestamoRevista = _diasPrestamoRevista;
     }
-    
+    /**
+     * Constructor para biblioteca, este metodo coloca los dias de prestamo por defecto: 10 en libro y 5 en revista
+     *
+     * @param _nombre string Nombre de la Biblioteca
+     * @param _ubicacion string ubicacion de la biblioteca
+     * @param _telefono int telefono de la biblioteca
+     * @param _bibliotecologo string nombre del bibliotecologo
+     * @param _fechaActual Date que contiene la fecha al inciar al programa
+     *
+     */
     public Biblioteca(String _nombre, String _ubicacion, int _telefono
             , String _bibliotecologo, Date _fechaActual) {
         this( _nombre,  _ubicacion,  _telefono
             ,  _bibliotecologo,  _fechaActual,10,5);
     }
-    
+
     // SETTERS Y GETTERS
     public void setNombre(String _nombre) {
         this.nombre = _nombre;
@@ -146,12 +155,11 @@ public class Biblioteca {
     //VALIDACIONES
     
     /**
-     * 
+     * Metodo que valida que el numero de telefono tenga 8 digitos
      * 
      * @param _numTel numero de telefono
      * @return  Retorna si el numero de telefono es valido
      */
-    
     private boolean validarTelefono(int _numTel) {
         String _telefono = Integer.toString(_numTel);
         return _telefono.length() == 8;
@@ -159,7 +167,9 @@ public class Biblioteca {
 
     
     /**
-     * 
+     *
+     * Metodo que valida que el correo tenga un @ y un cuerpo valido
+     *
      * @param _correoE Recibe un string el cual es un correo electronico 
      * @return Retorna si el string es un correo adecuado
      */
@@ -189,7 +199,9 @@ public class Biblioteca {
     
     
     /**
-     * 
+     *
+     * Metodo que valida que la entrada sea un string
+     *
      * @param _string recibe un string
      * @return Retorna true si es un string valido
      */
@@ -202,19 +214,11 @@ public class Biblioteca {
         return false;
         
     }
+
     /**
-     * 
-     * @param _string recibe un string y verifica que no tenga numeros
-     * @return Retorna si true si es un string sin numeros
-     */
-    private  boolean validarStringNumeros(String _string){
-        if (_string != null && _string.trim().length() > 0)
-            return true;
-        return false;
-        
-    }
-    /**
-     * 
+     *
+     * Metodo que valida que la entrada sea un genero de un libro
+     *
      * @param _tipo Recibe un string el cual es el tipo de libro 
      * @return Retorna true si es (novela , teatro, poesia, infantil, o ensayo)
      */
@@ -242,7 +246,9 @@ public class Biblioteca {
     }
     
     /**
-     * 
+     *
+     * Metodo que valida que el string de entrada no tenga numeros
+     *
      * @param _string recibe un string
      * @return  retorna true si el string no contiene numeros
      */
@@ -276,7 +282,9 @@ public class Biblioteca {
     }
 
     /**
-     * 
+     *
+     * Metodo que retorna el Objeto cliente por el numero de entrada
+     *
      * @param _id recibe un id (entero)  
      * @return retorna el objeto cliente con el ID dado
      */
@@ -298,15 +306,15 @@ public class Biblioteca {
     // REGISTRA EL CLIENTE
     
     /**
-     * 
+     *
+     * Si el Usuario da alguna da algun parametro erroneo del cliente
+     * o el identificador ya existe en el sistema, no se registra
      * 
      * @param _nombre nombre del cliente string
      * @param _correo correo del cliente string
      * @param _id ID del cliente, int 
      * @param _telefono num de telefono del cliente, int
-     * 
-     * Si el Usuario da alguna da algun parametro erroneo el cliente no se
-     * registra
+     *
      * 
      */
     public void registrarCliente(String _nombre, String _correo, int _id, int 
@@ -318,7 +326,10 @@ public class Biblioteca {
                 // crea el cliente
                 Cliente clienteNuevo = new Cliente( _nombre, _correo, _id, _telefono);
                 this.listaClientes.add(clienteNuevo);
+                out.println("Cliente ingresado satisfactoriamente");
             
+            }else{
+                out.println("La identificacion del cliente a registrar ya existe");
             }
             
         } else {
@@ -327,12 +338,17 @@ public class Biblioteca {
         }
     }
     /**
-     * 
+     *
+     * Registra un libro en el sistema de forma manual.
+     * Revisa que el nombre del libro, la editorial y el autor sean entradas validas,
+     * si lo son, registra el libro.
+     *
      * @param _nombre string nombre del Libro (no puede contener numeros)
      * @param _autor string nombre del autor 
      * @param _año int año del libro
      * @param _editorial string editorial del libro
-     * @param _genero  string genero del libro 
+     * @param _genero  string genero del libro
+     *
      */
     public void registrarLibro(String _nombre, String _autor, int _año, String
             _editorial, Genero _genero) {
@@ -349,7 +365,18 @@ public class Biblioteca {
         }
     }
 
-
+    /**
+     *
+     * Registra una revista en el sistema de forma manual.
+     * Revisa que el nombre de la revista sea una entrada valida,
+     * si lo es, registra el libro.
+     *
+     * @param _nombre string nombre de la Revista
+     * @param _numero int codigo de la Revista
+     * @param _año int año de la Revista
+     * @param _categoria string tipo de revista (para venta o para prestamo)
+     * @param _costo  int costo de las revistas para ventas
+     */
     public void registrarRevista(String _nombre, int _numero, int _año, String
             _categoria, int _costo) {
       if (this.validarString(_nombre)){
@@ -364,18 +391,33 @@ public class Biblioteca {
             
             
     // usado para verificar si el cliente ya esta registrado en el sistema
+    /**
+     *
+     * Metodo que revisa si existe un cliente ya registrado en el sistema
+     *
+     * @param _id int Identificador del cliente a registrar
+     * @return retorna si el cliente se encuentra en el registro de clientes o no
+     */
     public boolean clienteRegistrado(int _id) {
         int largo = this.listaClientes.size();
-        for (int i = 0; i <= largo; i++) {
-            if (this.listaClientes.get(i).getId() == _id) {
-                return true;
+        if (largo>0) {
+            for (int i = 0; i <= largo; i++) {
+                if (this.listaClientes.get(i).getId() == _id) {
+                    return true;
+                }
             }
         }
         return false;
     }
 
 
-
+    /**
+     *
+     * Metodo que realiza la venta de una revista, se crea un objeto Venta y se inserta en el registro
+     *
+     * @param _idCliente int Identificador del cliente
+     * @param _revista Objeto Revista que va a ser comprada por un cliente
+     */
     public void venderRevista(int _idCliente, Revista _revista) {
 
          if ( clienteRegistrado( _idCliente) && _revista.getEstado() == Estado.Disponible) {
@@ -390,7 +432,13 @@ public class Biblioteca {
 
     }
 
-
+    /**
+     *
+     * Metodo que realiza el prestamo de una revista, se crea un Objeto prestamo y se inserta en el registro
+     *
+     * @param _idCliente int Identificador del cliente
+     * @param _revista Objeto Revista que va a ser comprada por un cliente
+     */
     public void prestarRevista(int _idCliente, Revista _revista) {
         if ( clienteRegistrado( _idCliente) ) {
             Cliente cliente = retCliente(_idCliente);
@@ -405,7 +453,13 @@ public class Biblioteca {
         }
     }
 
-
+    /**
+     *
+     * Metodo que realiza el prestamo de un libro, se crea un Objeto prestamo y se inserta en el registro
+     *
+     * @param _idCliente int Identificador del cliente
+     * @param _libro Objeto Libro que va a ser comprada por un cliente
+     */
     public void prestarLibro(int _idCliente, Libro _libro) {
         if ( clienteRegistrado( _idCliente)&& !retCliente( _idCliente).getMoroso()) {  //falta una segunda expresion despues del &&
             Cliente cliente = retCliente(_idCliente);
@@ -422,6 +476,14 @@ public class Biblioteca {
 
     
     // antes de dar estos parametros se deben de ingresar un entero correcto
+    /**
+     *
+     * Metodo que cambia la fecha del sistema y los dias de prestamo de los libros y revistas
+     *
+     * @param _fechaActual Date fecha del sistema a cambiar
+     * @param _diasPrestamoLibro int Dias de prestamo para un libro
+     * @param _diasPrestamoRevista int Dias de prestamo para una revista
+     */
     public void cambiarParametros(Date _fechaActual, int _diasPrestamoLibro, 
             int _diasPrestamoRevista) {
         
@@ -429,8 +491,14 @@ public class Biblioteca {
         this.diasPrestamoLibro = _diasPrestamoLibro;
         this.diasPrestamoRevista = _diasPrestamoRevista;
     }
-    
-        
+
+    /**
+     *
+     * Metodo que revisa el estado de todos los libros, el estado de los libros que sean iguales a la entrada
+     * se insertan en una lista aparte para hacer un filtro
+     *
+     * @param _estado Estado Indica el estado a revisar de los libros
+     */
     public void consultarLibro(Estado _estado) {
         // crear la lista
         Vector<Libro> listaConsultada = new Vector<Libro>(); 
@@ -447,7 +515,14 @@ public class Biblioteca {
            // en la interfaz
     
     }
-    
+
+    /**
+     *
+     * Metodo que revisa el estado de todas las revistas, el estado de las revistas que sean iguales a la entrada
+     * se insertan en una lista aparte para hacer un filtro
+     *
+     * @param _estado Estado Indica el estado a revisar en las revistas
+     */
     public void consultarRevista(Estado _estado) {
         // crear la lista
         Vector<Revista> listaConsultada = new Vector<Revista>(); 
@@ -466,6 +541,11 @@ public class Biblioteca {
     }
 
     //Pba
+    /**
+     *
+     * Metodo que lee un archivo de Excel para insertar libros y revistas al sistema
+     *
+     */
     public void LeerExcel() {
                 String c1Val = "";
                 String f1Val = "";

@@ -7,7 +7,8 @@ package biblioteca;
  * 
  */
 public class Libro extends Articulo {
-    private static String id;
+    private static int idTotal;
+    private String id;
     private Estado estado;
     private String autor;
     private String editorial;
@@ -29,6 +30,8 @@ public class Libro extends Articulo {
      * @see Genero
      */
     public Libro(String _nombre, String _autor, int _año, String _editorial, Genero _genero){
+        idTotal ++;
+        id = "L-"+Integer.toString(idTotal);
         nombre = _nombre;
         autor = _autor;
         año = _año;
@@ -51,7 +54,7 @@ public class Libro extends Articulo {
     public void setEstado(Estado _estado){
         estado = _estado;
     }
-    
+
     public Estado getEstado(){
         return estado;
     }

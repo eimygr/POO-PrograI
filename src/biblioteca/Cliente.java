@@ -1,6 +1,6 @@
 package biblioteca;
 /**
- * Codigo para la clase Cliente
+ * Clase Cliente
  * 
  */
 public class Cliente {
@@ -11,7 +11,7 @@ public class Cliente {
     private boolean esta_moroso;
     
     /**
-     * Metodo que crea el cliente, constructor
+     * Constructor que crea el cliente
      * 
      * @param _nombre Nombre del cliente
      * @param _correo Correo del cliente    
