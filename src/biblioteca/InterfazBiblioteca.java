@@ -38,9 +38,27 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         botonPantallaRegistrar = new javax.swing.JButton();
         editorialText = new javax.swing.JTextField();
         publicacionText = new javax.swing.JTextField();
+        ventanaRegistrarCliente = new javax.swing.JFrame();
+        jLabel2 = new javax.swing.JLabel();
+        clienteText = new javax.swing.JTextField();
+        correoText = new javax.swing.JTextField();
+        idText = new javax.swing.JTextField();
+        telefonoText = new javax.swing.JTextField();
+        botonVentanaRegistrarCliente = new javax.swing.JButton();
+        ventanaRegistroRevista = new javax.swing.JFrame();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        revnombreText = new javax.swing.JTextField();
+        revnumeroText = new javax.swing.JTextField();
+        revanoText = new javax.swing.JTextField();
+        revTipoBox = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        botonVentanaRegistrarRevista = new javax.swing.JButton();
         etiquetaApp = new javax.swing.JLabel();
         registrarBoton = new javax.swing.JButton();
         excelBoton = new javax.swing.JButton();
+        botonRegistrarCliente = new javax.swing.JButton();
+        botonRegistrarRevista = new javax.swing.JButton();
 
         ventanaRegistroManual.setMinimumSize(new java.awt.Dimension(400, 400));
 
@@ -121,6 +139,130 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        ventanaRegistrarCliente.setMinimumSize(new java.awt.Dimension(400, 400));
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Registrar cliente");
+
+        clienteText.setText("Nombre del cliente");
+        clienteText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clienteTextActionPerformed(evt);
+            }
+        });
+
+        correoText.setText("Correo electronico");
+
+        idText.setText("Cedula de identificacion");
+
+        telefonoText.setText("Numero de telefono");
+
+        botonVentanaRegistrarCliente.setText("Registrar cliente");
+        botonVentanaRegistrarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonVentanaRegistrarClienteMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ventanaRegistrarClienteLayout = new javax.swing.GroupLayout(ventanaRegistrarCliente.getContentPane());
+        ventanaRegistrarCliente.getContentPane().setLayout(ventanaRegistrarClienteLayout);
+        ventanaRegistrarClienteLayout.setHorizontalGroup(
+            ventanaRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ventanaRegistrarClienteLayout.createSequentialGroup()
+                .addContainerGap(142, Short.MAX_VALUE)
+                .addGroup(ventanaRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(clienteText)
+                    .addComponent(correoText)
+                    .addComponent(idText, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                    .addComponent(telefonoText)
+                    .addComponent(botonVentanaRegistrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(91, 91, 91))
+        );
+        ventanaRegistrarClienteLayout.setVerticalGroup(
+            ventanaRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaRegistrarClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(clienteText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(correoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(idText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(telefonoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(botonVentanaRegistrarCliente)
+                .addGap(42, 42, 42))
+        );
+
+        ventanaRegistroRevista.setMinimumSize(new java.awt.Dimension(400, 400));
+
+        jLabel3.setText("Nombre, numero, ano, tipo(Venta o Prestamo)");
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Registrar revista");
+
+        revnombreText.setText("Nombre");
+
+        revnumeroText.setText("Numero");
+
+        revanoText.setText("Año");
+
+        revTipoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Venta", "Prestamo" }));
+
+        jLabel5.setText("Tipo:");
+
+        botonVentanaRegistrarRevista.setText("Registrar revista");
+
+        javax.swing.GroupLayout ventanaRegistroRevistaLayout = new javax.swing.GroupLayout(ventanaRegistroRevista.getContentPane());
+        ventanaRegistroRevista.getContentPane().setLayout(ventanaRegistroRevistaLayout);
+        ventanaRegistroRevistaLayout.setHorizontalGroup(
+            ventanaRegistroRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaRegistroRevistaLayout.createSequentialGroup()
+                .addContainerGap(90, Short.MAX_VALUE)
+                .addGroup(ventanaRegistroRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ventanaRegistroRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(ventanaRegistroRevistaLayout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(revTipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ventanaRegistroRevistaLayout.createSequentialGroup()
+                            .addGroup(ventanaRegistroRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(revnombreText)
+                                .addComponent(revnumeroText)
+                                .addComponent(revanoText))
+                            .addGap(87, 87, 87)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ventanaRegistroRevistaLayout.createSequentialGroup()
+                        .addComponent(botonVentanaRegistrarRevista)
+                        .addGap(138, 138, 138))))
+        );
+        ventanaRegistroRevistaLayout.setVerticalGroup(
+            ventanaRegistroRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaRegistroRevistaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(revnombreText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(revnumeroText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(revanoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(ventanaRegistroRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(revTipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(botonVentanaRegistrarRevista)
+                .addGap(33, 33, 33))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         etiquetaApp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -139,10 +281,26 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
             }
         });
 
-        excelBoton.setText("Registrar libro desde Excel");
+        excelBoton.setText("Registrar desde archivo Excel");
+        excelBoton.setToolTipText("Buscar en el sistema un archivo de Excel para registrar libros y revistas");
         excelBoton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 excelBotonMouseClicked(evt);
+            }
+        });
+
+        botonRegistrarCliente.setText("Registrar cliente");
+        botonRegistrarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRegistrarClienteMouseClicked(evt);
+            }
+        });
+
+        botonRegistrarRevista.setText("Registrar revista");
+        botonRegistrarRevista.setToolTipText("Registrar revista manualmente");
+        botonRegistrarRevista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRegistrarRevistaMouseClicked(evt);
             }
         });
 
@@ -154,20 +312,27 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addGap(123, 123, 123)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(excelBoton)
-                    .addComponent(registrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etiquetaApp))
-                .addContainerGap(118, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(registrarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(etiquetaApp)
+                        .addComponent(botonRegistrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonRegistrarRevista, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(etiquetaApp)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonRegistrarCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(registrarBoton)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonRegistrarRevista)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(excelBoton)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         pack();
@@ -234,6 +399,39 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
     ventanaRegistroManual.dispose();
     }//GEN-LAST:event_botonPantallaRegistrarMouseClicked
 
+    private void clienteTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clienteTextActionPerformed
+
+    private void botonRegistrarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarClienteMouseClicked
+        // TODO add your handling code here:
+        ventanaRegistrarCliente.setVisible(true);
+    }//GEN-LAST:event_botonRegistrarClienteMouseClicked
+
+    private void botonVentanaRegistrarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVentanaRegistrarClienteMouseClicked
+        // TODO add your handling code here:
+        try{
+            String nombre = clienteText.getText();
+            String correo = correoText.getText();
+            String id = idText.getText();
+            String telefono = telefonoText.getText();
+            //String categoria = categoriaListBox.getSelectedItem().toString();
+            int _id = Integer.parseInt(id);
+            int _telefono = Integer.parseInt(telefono);
+            
+            mainBiblioteca.registrarCliente(nombre, correo, _id, _telefono);
+        }
+        
+        catch (java.lang.NumberFormatException e){
+            JOptionPane.showMessageDialog(rootPane, "Datos incorrectos");
+        }
+    }//GEN-LAST:event_botonVentanaRegistrarClienteMouseClicked
+
+    private void botonRegistrarRevistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarRevistaMouseClicked
+        // TODO add your handling code here:
+        ventanaRegistroRevista.setVisible(true);
+    }//GEN-LAST:event_botonRegistrarRevistaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -272,15 +470,33 @@ Biblioteca mainBiblioteca = new Biblioteca();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField autorLibroText;
     private javax.swing.JButton botonPantallaRegistrar;
+    private javax.swing.JButton botonRegistrarCliente;
+    private javax.swing.JButton botonRegistrarRevista;
+    private javax.swing.JButton botonVentanaRegistrarCliente;
+    private javax.swing.JButton botonVentanaRegistrarRevista;
     private javax.swing.JLabel categoriaLabel;
     private javax.swing.JComboBox<String> categoriaListBox;
+    private javax.swing.JTextField clienteText;
+    private javax.swing.JTextField correoText;
     private javax.swing.JTextField editorialText;
     private javax.swing.JLabel etiquetaApp;
     private javax.swing.JButton excelBoton;
+    private javax.swing.JTextField idText;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField nombreLibroText;
     private javax.swing.JTextField publicacionText;
     private javax.swing.JButton registrarBoton;
+    private javax.swing.JComboBox<String> revTipoBox;
+    private javax.swing.JTextField revanoText;
+    private javax.swing.JTextField revnombreText;
+    private javax.swing.JTextField revnumeroText;
+    private javax.swing.JTextField telefonoText;
+    private javax.swing.JFrame ventanaRegistrarCliente;
     private javax.swing.JFrame ventanaRegistroManual;
+    private javax.swing.JFrame ventanaRegistroRevista;
     // End of variables declaration//GEN-END:variables
 }
