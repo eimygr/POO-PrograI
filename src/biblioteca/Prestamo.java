@@ -5,14 +5,24 @@ import javax.mail.internet.*;
 import java.util.Date;
 import java.util.Properties;
 
-
+/**
+ * Clase Prestamo 
+ * 
+ * 
+ */
 public class Prestamo {
     private Date fechaInicial;
     private Articulo articulo;
     private int duracionPrestamo;
     private Date fechaDevuelto;
     private boolean prestActivo;
-
+     
+    /**
+     * Metodo constructor para la clase Prestamo
+     * @param _fechaI tipo Date, recibe la fecha del prestamo creado
+     * @param _articulo tipo Articulo, recibe el articulo, ya sea Libro o Revista
+     * @param _duracion  la duracion es un entero que contiene la cantidad de dias
+     */
     Prestamo(Date _fechaI, Articulo _articulo, int _duracion){
         fechaInicial = _fechaI;
         articulo = _articulo;
@@ -30,7 +40,13 @@ public class Prestamo {
     public Date getFechaDevuelto(){return fechaDevuelto;}
     public Articulo getArticulo(){return articulo;}
 
-
+    /**
+     * 
+     * Metodo creado para enviar un correo al usuario
+     * 
+     * @param _correoCliente string que contiene el Correo del cliente
+     * @param _texto string Que contiene el mensaje que recibe el cliente
+     */
     public static void EnviarCorreo(String _correoCliente, String _texto){
         // DATOS DEL CORREO DE SALIDA
         String from = "eimydanibetoser@gmail.com";

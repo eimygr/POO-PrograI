@@ -33,6 +33,12 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 //End Librerias y archivos para leer de Excel
 
 
+/**
+ * 
+ * Clase Principal Biblioteca
+ * 
+ * 
+ */
 public class Biblioteca {
     private String nombre;
     private String ubicacion;
@@ -50,9 +56,17 @@ public class Biblioteca {
     private Vector<Venta> listaVentas =  new Vector<Venta>();
     private Vector<Prestamo> listaPrestamo =  new Vector<Prestamo>();
     
-    public Biblioteca(){
-    }
-    
+    /**
+     * Constructor para biblioteca
+     * 
+     * @param _nombre string Nombre de la Biblioteca
+     * @param _ubicacion string ubicacion de la biblioteca
+     * @param _telefono int telefono de la biblioteca 
+     * @param _bibliotecologo string nombre del bibliotecologo 
+     * @param _fechaActual Date que contiene la fecha al inciar al programa 
+     * @param _diasPrestamoLibro Int que contiene la cantidad de dias prestamo para los libros
+     * @param _diasPrestamoRevista Int que contiene la cantidad de dias prestamo para las revistas 
+     */
     public Biblioteca(String _nombre, String _ubicacion, int _telefono
             , String _bibliotecologo, Date _fechaActual, int _diasPrestamoLibro,
             int _diasPrestamoRevista) {

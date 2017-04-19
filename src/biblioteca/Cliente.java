@@ -1,12 +1,23 @@
 package biblioteca;
-
+/**
+ * Codigo para la clase Cliente
+ * 
+ */
 public class Cliente {
     private String nombre;
     private String correo;
     private int cedula;
     private int telefono;
     private boolean esta_moroso;
-
+    
+    /**
+     * Metodo que crea el cliente, constructor
+     * 
+     * @param _nombre Nombre del cliente
+     * @param _correo Correo del cliente    
+     * @param _cedula Cedula del cliente
+     * @param _telefono  Telefono int del cliente
+     */
     Cliente(String _nombre, String _correo, int _cedula, int _telefono){
         nombre = _nombre;
         correo = _correo;
@@ -22,9 +33,5 @@ public class Cliente {
     public int getTelefono(){return telefono;}
     public void setMoroso(boolean estado){esta_moroso = estado;}
     public boolean getMoroso(){return esta_moroso;}
-
-    // por favor hacer un metodo get moroso :):)
-    // R/Sorry, empecé a hacer lo del correo y deje de lado al cliente xD
-
 
 }

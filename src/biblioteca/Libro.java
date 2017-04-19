@@ -1,6 +1,11 @@
 package biblioteca;
 
 
+/**
+ * 
+ * Clase de Libro
+ * 
+ */
 public class Libro extends Articulo {
     private static String id;
     private Estado estado;
@@ -12,6 +17,17 @@ public class Libro extends Articulo {
     private String nombre;
     private Cliente cliente;
     
+    
+    /**
+     * Metodo constructor para la clase libro
+     * @param _nombre string nombre del libro
+     * @param _autor string nombre del autor de dicho Libro
+     * @param _año int año del libro
+     * @param _editorial String editorial del libro
+     * @param _genero genero del libro (de la clase enumerate genero)
+     * 
+     * @see Genero
+     */
     public Libro(String _nombre, String _autor, int _año, String _editorial, Genero _genero){
         nombre = _nombre;
         autor = _autor;
@@ -21,7 +37,9 @@ public class Libro extends Articulo {
         
         
     }
-
+    /**
+     * Metodo que cambia el estado del Libro, ya sea a Disponible o prestado.
+     */
     public void CambiarEstado(){
         if(estado == Estado.Disponible){
             estado = Estado.Prestada;

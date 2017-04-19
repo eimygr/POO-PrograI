@@ -9,6 +9,13 @@ public class Venta {
     private Cliente cliente;
     private String NombreArticulo;
 
+    /**
+     * Constructor para la clase Venta 
+     * @param _fecha
+     * @param _listaCompras
+     * @param _cliente
+     * @param _nombre 
+     */
     Venta(Date _fecha, Vector<Revista> _listaCompras, Cliente _cliente,String _nombre){
         fecha = _fecha;
         listaCompras = _listaCompras;
