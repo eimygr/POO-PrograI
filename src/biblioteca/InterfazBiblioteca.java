@@ -7,6 +7,8 @@ package biblioteca;
 
 import java.util.Date;
 import javax.swing.JOptionPane;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
 /**
  *
@@ -56,11 +58,21 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         botonVentanaRegistrarRevista = new javax.swing.JButton();
         revcostoText = new javax.swing.JTextField();
+        ventanaConfig = new javax.swing.JFrame();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        fechaText = new javax.swing.JTextField();
+        botodModificarFecha = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        prestamoLibrosText = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        prestamoRevistaText = new javax.swing.JTextField();
         etiquetaApp = new javax.swing.JLabel();
         registrarBoton = new javax.swing.JButton();
         excelBoton = new javax.swing.JButton();
         botonRegistrarCliente = new javax.swing.JButton();
         botonRegistrarRevista = new javax.swing.JButton();
+        botonConfig = new javax.swing.JButton();
 
         ventanaRegistroManual.setMinimumSize(new java.awt.Dimension(400, 400));
 
@@ -277,6 +289,85 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        ventanaConfig.setMinimumSize(new java.awt.Dimension(500, 500));
+        ventanaConfig.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                ventanaConfigWindowActivated(evt);
+            }
+        });
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Configuracion");
+
+        jLabel7.setText("Fecha actual: ");
+
+        botodModificarFecha.setText("Guardar cambios");
+        botodModificarFecha.setToolTipText("Escriba la fecha nueva y haga clic al boton para cambiarla");
+        botodModificarFecha.setActionCommand("Cambiar fecha del sistema");
+        botodModificarFecha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botodModificarFechaMouseClicked(evt);
+            }
+        });
+        botodModificarFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botodModificarFechaActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Dias de prestamo para libros: ");
+
+        jLabel9.setText("Dias de prestamos para revistas:");
+
+        javax.swing.GroupLayout ventanaConfigLayout = new javax.swing.GroupLayout(ventanaConfig.getContentPane());
+        ventanaConfig.getContentPane().setLayout(ventanaConfigLayout);
+        ventanaConfigLayout.setHorizontalGroup(
+            ventanaConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ventanaConfigLayout.createSequentialGroup()
+                .addGroup(ventanaConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(ventanaConfigLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ventanaConfigLayout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addGroup(ventanaConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ventanaConfigLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(prestamoRevistaText, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
+                            .addGroup(ventanaConfigLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(prestamoLibrosText))
+                            .addGroup(ventanaConfigLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fechaText)))))
+                .addGap(76, 76, 76))
+            .addComponent(botodModificarFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        ventanaConfigLayout.setVerticalGroup(
+            ventanaConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaConfigLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ventanaConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(fechaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
+                .addGroup(ventanaConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(prestamoLibrosText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ventanaConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(prestamoRevistaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addComponent(botodModificarFecha)
+                .addGap(27, 27, 27))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         etiquetaApp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -318,6 +409,13 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
             }
         });
 
+        botonConfig.setText("Configuracion");
+        botonConfig.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonConfigMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -332,6 +430,9 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                         .addComponent(botonRegistrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonRegistrarRevista, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)))
                 .addContainerGap(102, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(botonConfig))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,7 +447,8 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addComponent(botonRegistrarRevista)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(excelBoton)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addComponent(botonConfig))
         );
 
         pack();
@@ -434,6 +536,8 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
             int _telefono = Integer.parseInt(telefono);
             
             mainBiblioteca.registrarCliente(nombre, correo, _id, _telefono);
+            JOptionPane.showMessageDialog(rootPane, "Cliente registrado correctamente");
+            ventanaRegistrarCliente.dispose();
         }
         
         catch (java.lang.NumberFormatException e){
@@ -482,6 +586,64 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonVentanaRegistrarRevistaMouseClicked
 
+    private void ventanaConfigWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanaConfigWindowActivated
+        //org.jdatepicker.JDatePicker fecha = new JDatePicker()
+        /*        
+        UtilDateModel model = new UtilDateModel();
+        java.util.Properties p = new java.util.Properties(); 
+        org.jdatepicker.impl.JDatePanelImpl datePanel 
+                //org.jdatepicker.impl.JDatePanelImpl
+                = new org.jdatepicker.impl.JDatePanelImpl(model, p);
+        
+        
+        
+        org.jdatepicker.impl.JDatePickerImpl datePicker = 
+                new org.jdatepicker.impl.JDatePickerImpl(datePanel, new java.text.DateFormatgraDateLabelFormatter());
+        
+        ventanaConfig.add(datePicker);
+        */
+        
+        
+        Date fecha = mainBiblioteca.getFechaActual();
+        String date = new java.text.SimpleDateFormat("dd-MM-yyyy").format(fecha);
+        fechaText.setText(date);
+        
+    }//GEN-LAST:event_ventanaConfigWindowActivated
+
+    private void botonConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonConfigMouseClicked
+        ventanaConfig.setVisible(true);
+    }//GEN-LAST:event_botonConfigMouseClicked
+
+    private void botodModificarFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botodModificarFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botodModificarFechaActionPerformed
+
+    private void botodModificarFechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botodModificarFechaMouseClicked
+        String fechaNueva = fechaText.getText();
+        Date inputDate = new Date();
+        
+        java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd-MM-yyyy");
+        try{
+            inputDate = dateFormat.parse(fechaNueva);
+        }catch (java.text.ParseException e){
+            e.printStackTrace();
+        }
+      
+        
+        mainBiblioteca.setFechaActual(inputDate);
+        
+        String prestamoLibro = prestamoLibrosText.getText();
+        String prestamoRevista = prestamoRevistaText.getText();
+        mainBiblioteca.setDiasPrestamoLibro(Integer.parseInt(prestamoLibro));
+        mainBiblioteca.setDiasPrestamoRevista(Integer.parseInt(prestamoRevista));
+        
+        JOptionPane.showMessageDialog(rootPane, "Cambios guardados");
+        fechaText.setText("");
+        prestamoLibrosText.setText("");
+        prestamoRevistaText.setText("");
+        ventanaConfig.dispose();
+    }//GEN-LAST:event_botodModificarFechaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -520,6 +682,8 @@ Date fecha = new Date();
 Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte", 22382118, "Maria del Carmen Mairena", fecha, 10, 8);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField autorLibroText;
+    private javax.swing.JButton botodModificarFecha;
+    private javax.swing.JButton botonConfig;
     private javax.swing.JButton botonPantallaRegistrar;
     private javax.swing.JButton botonRegistrarCliente;
     private javax.swing.JButton botonRegistrarRevista;
@@ -532,13 +696,20 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JTextField editorialText;
     private javax.swing.JLabel etiquetaApp;
     private javax.swing.JButton excelBoton;
+    private javax.swing.JTextField fechaText;
     private javax.swing.JTextField idText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField nombreLibroText;
+    private javax.swing.JTextField prestamoLibrosText;
+    private javax.swing.JTextField prestamoRevistaText;
     private javax.swing.JTextField publicacionText;
     private javax.swing.JButton registrarBoton;
     private javax.swing.JTextField revanoText;
@@ -547,6 +718,7 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JTextField revnumeroText;
     private javax.swing.JComboBox<String> revtipoBox;
     private javax.swing.JTextField telefonoText;
+    private javax.swing.JFrame ventanaConfig;
     private javax.swing.JFrame ventanaRegistrarCliente;
     private javax.swing.JFrame ventanaRegistroManual;
     private javax.swing.JFrame ventanaRegistroRevista;
