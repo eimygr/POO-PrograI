@@ -5,6 +5,7 @@
  */
 package biblioteca;
 
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -51,9 +52,10 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         revnombreText = new javax.swing.JTextField();
         revnumeroText = new javax.swing.JTextField();
         revanoText = new javax.swing.JTextField();
-        revTipoBox = new javax.swing.JComboBox<>();
+        revtipoBox = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         botonVentanaRegistrarRevista = new javax.swing.JButton();
+        revcostoText = new javax.swing.JTextField();
         etiquetaApp = new javax.swing.JLabel();
         registrarBoton = new javax.swing.JButton();
         excelBoton = new javax.swing.JButton();
@@ -210,36 +212,46 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
 
         revanoText.setText("Año");
 
-        revTipoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Venta", "Prestamo" }));
+        revtipoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Venta", "Prestamo" }));
 
         jLabel5.setText("Tipo:");
 
         botonVentanaRegistrarRevista.setText("Registrar revista");
+        botonVentanaRegistrarRevista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonVentanaRegistrarRevistaMouseClicked(evt);
+            }
+        });
+
+        revcostoText.setText("Costo");
+        revcostoText.setToolTipText("Si la revista no es de venta, ingrese un 0");
 
         javax.swing.GroupLayout ventanaRegistroRevistaLayout = new javax.swing.GroupLayout(ventanaRegistroRevista.getContentPane());
         ventanaRegistroRevista.getContentPane().setLayout(ventanaRegistroRevistaLayout);
         ventanaRegistroRevistaLayout.setHorizontalGroup(
             ventanaRegistroRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ventanaRegistroRevistaLayout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
+                .addContainerGap(84, Short.MAX_VALUE)
                 .addGroup(ventanaRegistroRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ventanaRegistroRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(ventanaRegistroRevistaLayout.createSequentialGroup()
                             .addComponent(jLabel5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(revTipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(revtipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(218, 218, 218))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ventanaRegistroRevistaLayout.createSequentialGroup()
-                            .addGroup(ventanaRegistroRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(revnombreText)
-                                .addComponent(revnumeroText)
-                                .addComponent(revanoText))
+                            .addGroup(ventanaRegistroRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(revcostoText, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(ventanaRegistroRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(revnombreText)
+                                    .addComponent(revnumeroText)
+                                    .addComponent(revanoText)))
                             .addGap(87, 87, 87)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ventanaRegistroRevistaLayout.createSequentialGroup()
                         .addComponent(botonVentanaRegistrarRevista)
-                        .addGap(138, 138, 138))))
+                        .addGap(142, 142, 142))))
         );
         ventanaRegistroRevistaLayout.setVerticalGroup(
             ventanaRegistroRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,11 +268,13 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addComponent(revanoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(ventanaRegistroRevistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(revTipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(revtipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(revcostoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(botonVentanaRegistrarRevista)
-                .addGap(33, 33, 33))
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -432,6 +446,42 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         ventanaRegistroRevista.setVisible(true);
     }//GEN-LAST:event_botonRegistrarRevistaMouseClicked
 
+    private void botonVentanaRegistrarRevistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVentanaRegistrarRevistaMouseClicked
+        // TODO add your handling code here:
+        
+        try{
+            int _costo = 0;
+            String nombre = revnombreText.getText();
+            String num = revnumeroText.getText();
+            int _num = Integer.parseInt(num);
+            
+            String ano = revanoText.getText();
+            int _ano = Integer.parseInt(ano);
+           
+            String tipo = revtipoBox.getSelectedItem().toString();
+            
+            try{
+                String costo = revcostoText.getText();
+                _costo = Integer.parseInt(revcostoText.getText());
+                }
+            catch (java.lang.NumberFormatException e){
+ 
+            }
+            
+            //if (tipo == "Venta"){
+                //ventanaCosto.setVisible(true);
+               // costo = Integer.parseInt(revcostoText.getText());
+                //}
+            //mainBiblioteca.re
+            mainBiblioteca.registrarRevista(nombre, _num, _ano, tipo, _costo);
+            ventanaRegistroRevista.dispose();
+        } 
+        
+        catch (java.lang.NumberFormatException e){
+            JOptionPane.showMessageDialog(rootPane, "Datos incorrectos");
+        }
+    }//GEN-LAST:event_botonVentanaRegistrarRevistaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -466,7 +516,8 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
             }
         });
     }
-Biblioteca mainBiblioteca = new Biblioteca();
+Date fecha = new Date();
+Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte", 22382118, "Maria del Carmen Mairena", fecha, 10, 8);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField autorLibroText;
     private javax.swing.JButton botonPantallaRegistrar;
@@ -490,10 +541,11 @@ Biblioteca mainBiblioteca = new Biblioteca();
     private javax.swing.JTextField nombreLibroText;
     private javax.swing.JTextField publicacionText;
     private javax.swing.JButton registrarBoton;
-    private javax.swing.JComboBox<String> revTipoBox;
     private javax.swing.JTextField revanoText;
+    private javax.swing.JTextField revcostoText;
     private javax.swing.JTextField revnombreText;
     private javax.swing.JTextField revnumeroText;
+    private javax.swing.JComboBox<String> revtipoBox;
     private javax.swing.JTextField telefonoText;
     private javax.swing.JFrame ventanaRegistrarCliente;
     private javax.swing.JFrame ventanaRegistroManual;
