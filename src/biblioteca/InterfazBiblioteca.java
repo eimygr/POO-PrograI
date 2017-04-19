@@ -6,6 +6,7 @@
 package biblioteca;
 
 import java.util.Date;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -67,12 +68,21 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         prestamoLibrosText = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         prestamoRevistaText = new javax.swing.JTextField();
+        ventanaPrestamo = new javax.swing.JFrame();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jlistaLibrosPrestamo = new javax.swing.JList<>();
+        jLabel12 = new javax.swing.JLabel();
+        botonRegistrarPrestamo = new javax.swing.JButton();
+        idPrestamoText = new javax.swing.JTextField();
         etiquetaApp = new javax.swing.JLabel();
         registrarBoton = new javax.swing.JButton();
         excelBoton = new javax.swing.JButton();
         botonRegistrarCliente = new javax.swing.JButton();
         botonRegistrarRevista = new javax.swing.JButton();
         botonConfig = new javax.swing.JButton();
+        botonPrestamo = new javax.swing.JButton();
 
         ventanaRegistroManual.setMinimumSize(new java.awt.Dimension(400, 400));
 
@@ -368,6 +378,82 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addGap(27, 27, 27))
         );
 
+        ventanaPrestamo.setMinimumSize(new java.awt.Dimension(600, 600));
+        ventanaPrestamo.setPreferredSize(new java.awt.Dimension(700, 700));
+        ventanaPrestamo.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                ventanaPrestamoWindowActivated(evt);
+            }
+        });
+
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Registrar prestamo");
+
+        jLabel11.setText("Ingrese el identificador del usuario:");
+
+        jlistaLibrosPrestamo.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jlistaLibrosPrestamo.setToolTipText("");
+        jScrollPane1.setViewportView(jlistaLibrosPrestamo);
+
+        jLabel12.setText("Seleccione el libro:");
+
+        botonRegistrarPrestamo.setText("Registrar");
+        botonRegistrarPrestamo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRegistrarPrestamoMouseClicked(evt);
+            }
+        });
+
+        idPrestamoText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idPrestamoTextActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ventanaPrestamoLayout = new javax.swing.GroupLayout(ventanaPrestamo.getContentPane());
+        ventanaPrestamo.getContentPane().setLayout(ventanaPrestamoLayout);
+        ventanaPrestamoLayout.setHorizontalGroup(
+            ventanaPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaPrestamoLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(ventanaPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(ventanaPrestamoLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ventanaPrestamoLayout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(idPrestamoText)))
+                .addContainerGap(162, Short.MAX_VALUE))
+            .addGroup(ventanaPrestamoLayout.createSequentialGroup()
+                .addGroup(ventanaPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ventanaPrestamoLayout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ventanaPrestamoLayout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(botonRegistrarPrestamo)))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        ventanaPrestamoLayout.setVerticalGroup(
+            ventanaPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaPrestamoLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ventanaPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idPrestamoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(ventanaPrestamoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(botonRegistrarPrestamo)
+                .addGap(29, 29, 29))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         etiquetaApp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -416,23 +502,30 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
             }
         });
 
+        botonPrestamo.setText("Registrar prestamo");
+        botonPrestamo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonPrestamoMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(excelBoton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(registrarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(etiquetaApp)
-                        .addComponent(botonRegistrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonRegistrarRevista, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)))
-                .addContainerGap(102, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(botonConfig))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(excelBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(registrarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(etiquetaApp)
+                    .addComponent(botonRegistrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonRegistrarRevista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -447,7 +540,9 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addComponent(botonRegistrarRevista)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(excelBoton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(botonPrestamo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(botonConfig))
         );
 
@@ -644,6 +739,46 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         ventanaConfig.dispose();
     }//GEN-LAST:event_botodModificarFechaMouseClicked
 
+    private void botonPrestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPrestamoMouseClicked
+        ventanaPrestamo.setVisible(true);
+    }//GEN-LAST:event_botonPrestamoMouseClicked
+
+    private void ventanaPrestamoWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanaPrestamoWindowActivated
+        //mainBiblioteca.listaLibros;
+        Vector<Libro> listaLibros = mainBiblioteca.getListaLibros();
+
+        javax.swing.DefaultListModel<String> listaLibrosString =  new javax.swing.DefaultListModel<String>();
+
+        int largo = listaLibros.size();
+        if (largo>0) {
+            for (int i = 0; i < largo; i++) {
+                listaLibrosString.addElement(listaLibros.get(i).getNombre());
+
+            }
+        }
+        else{
+            System.out.println("No hay books");
+        }
+
+        jlistaLibrosPrestamo.setModel(listaLibrosString);
+    }//GEN-LAST:event_ventanaPrestamoWindowActivated
+
+    private void botonRegistrarPrestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarPrestamoMouseClicked
+        Vector<Libro> listaLibros = mainBiblioteca.getListaLibros();
+        String id = idPrestamoText.getText();
+        int index = jlistaLibrosPrestamo.getSelectedIndex();
+        Libro _libro = listaLibros.get(index);
+        
+        
+        mainBiblioteca.prestarLibro(Integer.parseInt(id), _libro);
+        JOptionPane.showMessageDialog(rootPane, "Prestamo registrado");
+        ventanaPrestamo.dispose();
+    }//GEN-LAST:event_botonRegistrarPrestamoMouseClicked
+
+    private void idPrestamoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idPrestamoTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idPrestamoTextActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -685,7 +820,9 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JButton botodModificarFecha;
     private javax.swing.JButton botonConfig;
     private javax.swing.JButton botonPantallaRegistrar;
+    private javax.swing.JButton botonPrestamo;
     private javax.swing.JButton botonRegistrarCliente;
+    private javax.swing.JButton botonRegistrarPrestamo;
     private javax.swing.JButton botonRegistrarRevista;
     private javax.swing.JButton botonVentanaRegistrarCliente;
     private javax.swing.JButton botonVentanaRegistrarRevista;
@@ -697,8 +834,12 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JLabel etiquetaApp;
     private javax.swing.JButton excelBoton;
     private javax.swing.JTextField fechaText;
+    private javax.swing.JTextField idPrestamoText;
     private javax.swing.JTextField idText;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -707,6 +848,8 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> jlistaLibrosPrestamo;
     private javax.swing.JTextField nombreLibroText;
     private javax.swing.JTextField prestamoLibrosText;
     private javax.swing.JTextField prestamoRevistaText;
@@ -719,6 +862,7 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JComboBox<String> revtipoBox;
     private javax.swing.JTextField telefonoText;
     private javax.swing.JFrame ventanaConfig;
+    private javax.swing.JFrame ventanaPrestamo;
     private javax.swing.JFrame ventanaRegistrarCliente;
     private javax.swing.JFrame ventanaRegistroManual;
     private javax.swing.JFrame ventanaRegistroRevista;

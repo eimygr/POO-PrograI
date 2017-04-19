@@ -472,6 +472,9 @@ public class Biblioteca {
 
             }
         }
+        else{
+        System.out.println("No existe el cliente");
+        }
     }
 
     
@@ -540,7 +543,9 @@ public class Biblioteca {
     
     }
 
-    //Pba
+    public Vector<Libro> getListaLibros(){
+        return listaLibros;
+    }
     /**
      *
      * Metodo que lee un archivo de Excel para insertar libros y revistas al sistema

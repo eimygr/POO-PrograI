@@ -62,4 +62,7 @@ public class Libro extends Articulo {
     public void setCliente(Cliente _cliente){
         cliente = _cliente;
     }
+    public String getNombre(){
+    return nombre;
+    }
 }
