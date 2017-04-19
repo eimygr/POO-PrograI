@@ -3,20 +3,17 @@ package biblioteca;
 public class Main {
     
     public static void main(String[] args) {
-      /* 
-    //Prestamo.EnviarCorreo("eimygr@gmail.com", "Eimy, lesbiana");
-        String[] archivo = new String[1];
-        archivo[0] = "Libros";
+        //Biblioteca mainBiblioteca = new Biblioteca();
+    
+      ///*
+    
+        //Biblioteca a = new Biblioteca();
         
-        //Biblioteca.testCreateSampleSheet("Libros");
-        //Biblioteca.registrarExcel(archivo);
-        Biblioteca a = new Biblioteca();
-        
-        a.LeerExcel();
-      */  
+        //a.LeerExcel();
+      //*/  
       InterfazBiblioteca GUI = new InterfazBiblioteca();
       GUI.setVisible(true);
-    
+      
     }
 
     

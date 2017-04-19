@@ -462,10 +462,11 @@ public class Biblioteca {
                         fc.showOpenDialog(fc);
                         
                         java.io.File file = fc.getSelectedFile();
-                        
+                        String path = fc.getCurrentDirectory().getAbsolutePath();
+                        System.out.println(path);
                         String Filename = fc.getName(file);
                         
-			FileInputStream fileInputStream = new FileInputStream(Filename);
+			FileInputStream fileInputStream = new FileInputStream(path + "/" + Filename);
 			XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
 			XSSFSheet worksheet = workbook.getSheetAt(0);
 
@@ -544,8 +545,8 @@ public class Biblioteca {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (NullPointerException e){
-                        System.out.println("Yap");
+		//} catch (NullPointerException e){
+                  //      System.out.println("Yap");
                 }
                 
 	}
