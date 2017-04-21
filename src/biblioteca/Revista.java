@@ -44,6 +44,15 @@ package biblioteca;
     public void setEstado(Estado _estado){
         estado = _estado;
     }
+    @Override
+    public void CambiarEstado(){ //Este metodo hay que modificarlo
+        if(estado == Estado.Disponible){
+            estado = Estado.Prestada;
+        }else{
+            estado = Estado.Disponible;
+        }
+    }
+    
     
     public Estado getEstado(){
         return estado;
@@ -56,6 +65,11 @@ package biblioteca;
     public String getTipo(){
     return tipo;
     }
+    
+    public double getCosto(){
+        return costo;
+    }
+    
      
     //Falta el setCliente   :):)
     

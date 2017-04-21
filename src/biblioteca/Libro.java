@@ -43,6 +43,7 @@ public class Libro extends Articulo {
     /**
      * Metodo que cambia el estado del Libro, ya sea a Disponible o prestado.
      */
+    @Override
     public void CambiarEstado(){
         if(estado == Estado.Disponible){
             estado = Estado.Prestada;

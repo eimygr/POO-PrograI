@@ -152,6 +152,16 @@ public class Biblioteca {
         return this.diasPrestamoRevista;
     }
     
+    public Vector<Libro> getListaLibros(){
+        return listaLibros;
+    }
+    public Vector<Revista> getListaRevistas(){
+        return listaRevistas;
+    }
+    public Vector<Prestamo> getListaPrestamo(){
+        return listaPrestamo;
+    }
+    
     //VALIDACIONES
     
     /**
@@ -165,6 +175,18 @@ public class Biblioteca {
         return _telefono.length() == 8;
     }
 
+    /**
+     *
+     * Metodo que recibe un libro y lo coloca de nuevo como Disponible
+     *
+     * @param _cliente Recibe un cliente al que se le presto el libro
+     * @param _libro Recibe el libro prestado
+     */
+    public void devolverLiteratura(Cliente _cliente, Articulo _libro){
+        
+        
+    }
+    
     
     /**
      *
@@ -421,6 +443,7 @@ public class Biblioteca {
     public void venderRevista(int _idCliente, Revista _revista) {
 
          if ( clienteRegistrado( _idCliente) && _revista.getEstado() == Estado.Disponible) {
+             System.out.println("HOLA");
              Cliente cliente = retCliente(_idCliente);
              _revista.setEstado(Estado.Vendida);
              _revista.setCliente(cliente);
@@ -428,6 +451,9 @@ public class Biblioteca {
            Venta nuevaVenta = new Venta(fechaActual,this.listaRevistas, cliente, _revista.getNombre());
            listaVentas.add(nuevaVenta);
 
+         }
+         else{
+            throw new java.lang.IllegalArgumentException();
          }
 
     }
@@ -543,12 +569,7 @@ public class Biblioteca {
     
     }
 
-    public Vector<Libro> getListaLibros(){
-        return listaLibros;
-    }
-    public Vector<Revista> getListaRevistas(){
-        return listaRevistas;
-    }
+    
     /**
      *
      * Metodo que lee un archivo de Excel para insertar libros y revistas al sistema
