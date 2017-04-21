@@ -37,6 +37,7 @@ public class Libro extends Articulo {
         año = _año;
         editorial = _editorial;
         genero = _genero;
+        estado = Estado.Disponible;
         
         
     }
