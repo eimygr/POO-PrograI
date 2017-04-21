@@ -34,7 +34,8 @@ package biblioteca;
         num = _numero;
         año = _año;
         tipo = _tipo;
-        costo = _costo;  
+        costo = _costo;
+        estado = Estado.Disponible;
     }
     
     public String getNombre(){

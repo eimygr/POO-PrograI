@@ -536,7 +536,8 @@ public class Biblioteca {
             }
         }
         else{
-        System.out.println("No existe el cliente");
+            throw new java.lang.IllegalArgumentException();
+        //System.out.println("No existe el cliente");
         }
     }
 
