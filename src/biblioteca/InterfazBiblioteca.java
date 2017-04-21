@@ -100,6 +100,15 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         label3 = new java.awt.Label();
         botonPagarMultas = new javax.swing.JButton();
         labelMontoTotal = new javax.swing.JLabel();
+        ventanaPagarMulta2 = new javax.swing.JFrame();
+        label7 = new java.awt.Label();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        labelMontoTotal2 = new javax.swing.JLabel();
+        botonPagarMultas2 = new javax.swing.JButton();
         jventanaLibros = new javax.swing.JFrame();
         label5 = new java.awt.Label();
         label6 = new java.awt.Label();
@@ -686,6 +695,69 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        label7.setText("Cedula del cliente:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel20.setText("Monto total a pagar: ");
+
+        jLabel21.setText("Libros con multa:");
+
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane7.setViewportView(jList2);
+
+        labelMontoTotal2.setText("(COSTO)");
+
+        botonPagarMultas2.setText("Paga multas");
+        botonPagarMultas2.setActionCommand("Pagar multas");
+
+        javax.swing.GroupLayout ventanaPagarMulta2Layout = new javax.swing.GroupLayout(ventanaPagarMulta2.getContentPane());
+        ventanaPagarMulta2.getContentPane().setLayout(ventanaPagarMulta2Layout);
+        ventanaPagarMulta2Layout.setHorizontalGroup(
+            ventanaPagarMulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaPagarMulta2Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addGroup(ventanaPagarMulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botonPagarMultas2)
+                    .addGroup(ventanaPagarMulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(ventanaPagarMulta2Layout.createSequentialGroup()
+                            .addComponent(jLabel21)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jScrollPane7))
+                        .addGroup(ventanaPagarMulta2Layout.createSequentialGroup()
+                            .addComponent(jLabel20)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(labelMontoTotal2))
+                        .addGroup(ventanaPagarMulta2Layout.createSequentialGroup()
+                            .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(157, Short.MAX_VALUE))
+        );
+        ventanaPagarMulta2Layout.setVerticalGroup(
+            ventanaPagarMulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaPagarMulta2Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(ventanaPagarMulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(ventanaPagarMulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel21)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(ventanaPagarMulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(labelMontoTotal2))
+                .addGap(31, 31, 31)
+                .addComponent(botonPagarMultas2)
+                .addContainerGap())
+        );
+
         jventanaLibros.setMinimumSize(new java.awt.Dimension(400, 400));
 
         label5.setText("Libros");
@@ -760,7 +832,7 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
 
         jScrollPane6.setViewportView(jlistaRevistas);
 
-        botonSalirRevistas.setText("jButton3");
+        botonSalirRevistas.setText("Salir");
         botonSalirRevistas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonSalirRevistasMouseClicked(evt);
@@ -1345,6 +1417,7 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JButton botonConfig;
     private javax.swing.JButton botonDevolver;
     private javax.swing.JButton botonPagarMultas;
+    private javax.swing.JButton botonPagarMultas2;
     private javax.swing.JButton botonPantallaRegistrar;
     private javax.swing.JButton botonPrestamo;
     private javax.swing.JButton botonRegistrarCliente;
@@ -1372,6 +1445,7 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JTextField idText;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1384,6 +1458,8 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1392,12 +1468,14 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JList<String> jlistaLibros;
     private javax.swing.JList<String> jlistaLibrosPrestados;
     private javax.swing.JList<String> jlistaLibrosPrestamo;
@@ -1410,7 +1488,9 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private java.awt.Label label4;
     private java.awt.Label label5;
     private java.awt.Label label6;
+    private java.awt.Label label7;
     private javax.swing.JLabel labelMontoTotal;
+    private javax.swing.JLabel labelMontoTotal2;
     private javax.swing.JTextField nombreLibroText;
     private javax.swing.JTextField prestamoLibrosText;
     private javax.swing.JTextField prestamoRevistaText;
@@ -1425,6 +1505,7 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JFrame ventanaConfig;
     private javax.swing.JFrame ventanaDevolverLiteratura;
     private javax.swing.JFrame ventanaPagarMulta1;
+    private javax.swing.JFrame ventanaPagarMulta2;
     private javax.swing.JFrame ventanaPrestamo;
     private javax.swing.JFrame ventanaRegistrarCliente;
     private javax.swing.JFrame ventanaRegistroManual;
