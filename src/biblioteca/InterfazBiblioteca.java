@@ -131,10 +131,11 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         botonConfig = new javax.swing.JButton();
         botonPrestamo = new javax.swing.JButton();
         botonVentaRevista = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        botonCalcular = new javax.swing.JButton();
+        botonVerLibros = new javax.swing.JButton();
         btotonRevistas = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
+        botonDevolverLiteratura = new javax.swing.JButton();
 
         ventanaRegistroManual.setMinimumSize(new java.awt.Dimension(400, 400));
 
@@ -431,7 +432,6 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         );
 
         ventanaPrestamo.setMinimumSize(new java.awt.Dimension(600, 600));
-        ventanaPrestamo.setPreferredSize(new java.awt.Dimension(700, 700));
         ventanaPrestamo.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 ventanaPrestamoWindowActivated(evt);
@@ -937,12 +937,12 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Calcular multas y enviar correos");
+        botonCalcular.setText("Calcular multas y enviar correos");
 
-        jButton2.setText("Ver libros");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonVerLibros.setText("Ver libros");
+        botonVerLibros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                botonVerLibrosMouseClicked(evt);
             }
         });
 
@@ -957,6 +957,13 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         botonSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonSalirMouseClicked(evt);
+            }
+        });
+
+        botonDevolverLiteratura.setText("Devolver literatura");
+        botonDevolverLiteratura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonDevolverLiteraturaMouseClicked(evt);
             }
         });
 
@@ -978,9 +985,10 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                     .addComponent(botonRegistrarRevista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonVentaRevista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btotonRevistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonVerLibros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btotonRevistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonDevolverLiteratura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -1000,13 +1008,15 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addComponent(botonPrestamo)
                 .addGap(18, 18, 18)
                 .addComponent(botonVentaRevista)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(botonDevolverLiteratura)
+                .addGap(13, 13, 13)
+                .addComponent(botonCalcular)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonVerLibros)
                 .addGap(18, 18, 18)
                 .addComponent(btotonRevistas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonConfig)
                     .addComponent(botonSalir)))
@@ -1065,15 +1075,17 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 break;                
                 }
             mainBiblioteca.registrarLibro(nombre, autor, ano, editorial, generoLibro);
+            JOptionPane.showMessageDialog(rootPane, "Libro registrado");
+            ventanaRegistroManual.dispose();
             }
         catch (NullPointerException e){
             System.out.println("Errorsh");
             }
         catch (java.lang.NumberFormatException e){
             System.out.println("Errorsh");
+            JOptionPane.showMessageDialog(rootPane, "Error en los datos ingresados");
         }
-    JOptionPane.showMessageDialog(rootPane, "Libro registrado");
-    ventanaRegistroManual.dispose();
+    
     }//GEN-LAST:event_botonPantallaRegistrarMouseClicked
 
     private void clienteTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteTextActionPerformed
@@ -1097,7 +1109,7 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
             int _telefono = Integer.parseInt(telefono);
             
             mainBiblioteca.registrarCliente(nombre, correo, _id, _telefono);
-            JOptionPane.showMessageDialog(rootPane, "Cliente registrado correctamente");
+           // JOptionPane.showMessageDialog(rootPane, "Cliente registrado correctamente");
             ventanaRegistrarCliente.dispose();
         }
         
@@ -1284,9 +1296,9 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonComprarMouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void botonVerLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVerLibrosMouseClicked
         jventanaLibros.setVisible(true);
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_botonVerLibrosMouseClicked
 
     private void boxLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxLibrosActionPerformed
         Vector<Libro> listaLibros = mainBiblioteca.getListaLibros();
@@ -1396,6 +1408,10 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         System.exit(0); 
     }//GEN-LAST:event_botonSalirMouseClicked
 
+    private void botonDevolverLiteraturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDevolverLiteraturaMouseClicked
+        ventanaDevolverLiteratura.setVisible(true);
+    }//GEN-LAST:event_botonDevolverLiteraturaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1435,9 +1451,11 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField autorLibroText;
     private javax.swing.JButton botodModificarFecha;
+    private javax.swing.JButton botonCalcular;
     private javax.swing.JButton botonComprar;
     private javax.swing.JButton botonConfig;
     private javax.swing.JButton botonDevolver;
+    private javax.swing.JButton botonDevolverLiteratura;
     private javax.swing.JButton botonPagarMultas;
     private javax.swing.JButton botonPagarMultas2;
     private javax.swing.JButton botonPantallaRegistrar;
@@ -1451,6 +1469,7 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JButton botonVentaRevista;
     private javax.swing.JButton botonVentanaRegistrarCliente;
     private javax.swing.JButton botonVentanaRegistrarRevista;
+    private javax.swing.JButton botonVerLibros;
     private javax.swing.JComboBox<String> boxLibros;
     private javax.swing.JComboBox<String> boxRevistas;
     private javax.swing.JButton btotonRevistas;
@@ -1466,8 +1485,6 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JTextField idClienteVenta;
     private javax.swing.JTextField idPrestamoText;
     private javax.swing.JTextField idText;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
