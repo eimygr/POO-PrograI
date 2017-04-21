@@ -63,6 +63,9 @@ package biblioteca;
         cliente = _cliente;
     }
     
+    @Override
+    public Cliente getCliente() {return cliente;}
+    
     public String getTipo(){
     return tipo;
     }

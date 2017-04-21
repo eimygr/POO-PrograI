@@ -52,6 +52,9 @@ public class Libro extends Articulo {
             estado = Estado.Disponible;
         }
     }
+    
+    @Override
+    public Cliente getCliente() {return cliente;}
 
     public void setEstado(Estado _estado){
         estado = _estado;

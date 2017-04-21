@@ -78,6 +78,8 @@ public class Biblioteca {
         
         this.diasPrestamoLibro = _diasPrestamoLibro;
         this.diasPrestamoRevista = _diasPrestamoRevista;
+    
+        
     }
     /**
      * Constructor para biblioteca, este metodo coloca los dias de prestamo por defecto: 10 en libro y 5 en revista
@@ -93,6 +95,13 @@ public class Biblioteca {
             , String _bibliotecologo, Date _fechaActual) {
         this( _nombre,  _ubicacion,  _telefono
             ,  _bibliotecologo,  _fechaActual,10,5);
+        
+        
+        // PRUEBAS
+        
+        
+        
+        
     }
 
     // SETTERS Y GETTERS
@@ -192,8 +201,80 @@ public class Biblioteca {
         }
         
     }
+    /**
+     * Toma un prestamo y determina si el cliente debe tener una multa
+     * 
+     * @param _prestamo recibe un prestamo
+     * @return retorna True si el cliente de dicho prestamo tiene una multa
+     */
+    boolean tieneMulta(Prestamo _prestamo) {
+        
+        int cantidadDiasPrestamo = _prestamo.getDuracionPrestamo();
+        Date diaInicialPrestamo = _prestamo.getFechaInicial();
+        int diasDesdePrestamo = this.diasEntreFechas(diaInicialPrestamo, fechaActual);
+        
+        if (cantidadDiasPrestamo > diasDesdePrestamo) {
+            //... si los diferencia de dias es mayor a la establecidad
+            // el usuario tiene una multa
+            return true;
+           
+        }
+        return false;
+        
+    }
     
+    /**
+     * Revisa los prestamos existente y si un cliente deberia de tener una multa
+     * le cambia la morosidad a True a dicho Cliente.
+     * 
+     */
+    public void revisarMorosidad() {
+        
+        int largo = listaPrestamo.size();
+        for (int i = 0; i <= largo; i++) {
+
+            Prestamo prestamo = listaPrestamo.get(i);
+            
+            if (this.tieneMulta(prestamo)) {
+                Articulo articulo = prestamo.getArticulo();
+                Cliente clienteMoroso = articulo.getCliente();
+                clienteMoroso.setMoroso(true);                
+            }
+        }
+    }
+    /**
+     * Funcion que recibe el id de un cliente y da una lista de los prestamos del
+     * Cliente
+     * 
+     * @param _idCliente recibe el id de un cliente
+     * @return retorna una lista con los prestamos asociados a dicho clinte 
+     */
+    public Vector<Prestamo> getListaPrestamos(int _idCliente) {
+        Vector<Prestamo> listaPrestamos = new Vector<Prestamo>();
+        
+        int largo = listaPrestamo.size();
+        for (int i = 0; i <= largo; i++) {
+
+            Prestamo prestamo = listaPrestamo.get(i);
+
+            Articulo articulo = prestamo.getArticulo();
+            Cliente cliente = articulo.getCliente();
+            if (cliente.getMoroso() && cliente.getId() == _idCliente) {
+                listaPrestamo.add(prestamo);
+            }
+
+        }
+        return listaPrestamos;    
+    }
     
+    /**
+     * Metodo que recibe dos fechas y retorna la cantidad de dias entre una fecha
+     * y otra
+     * 
+     * @param _fechai  una fecha Inicial tipo Date
+     * @param _fechaf  una fecha Final tipo Date
+     * @return retorna un entero el cual es la cantidad de dias entre ambos
+     */
     public int diasEntreFechas(Date _fechai, Date _fechaf) {
         
         if (_fechai.compareTo(_fechaf) == 0 ) {
@@ -206,6 +287,24 @@ public class Biblioteca {
        
         
         return days2-days1;
+        
+        /*
+            
+        String fechaNueva = "24-04-2017";
+        Date inputDate = new Date();
+        
+        java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd-MM-yyyy");
+        
+        try{
+            inputDate = dateFormat.parse(fechaNueva);
+        }catch (java.text.ParseException e){
+            e.printStackTrace();
+        }
+
+        int x = this.diasEntreFechas(this.fechaActual,inputDate);
+        System.out.print(x);
+        */
+        
     
     }
     
@@ -217,6 +316,8 @@ public class Biblioteca {
      * @return Retorna si el string es un correo adecuado
      */
     private boolean validarCorreo(String _correoE) {
+        int bandera = 0;
+        
         if (!this.validarString(_correoE))
             return false;
         
@@ -232,9 +333,14 @@ public class Biblioteca {
             if (letra == '@'){
                 if (_correoE.charAt(i + 1) == ' ') {
                     return false ;
-                }   
+                }
+                bandera = 1;
             }
         }
+        if (bandera != 1) {
+            return false;
+        }
+        
         return true;
     }
    // metodo utilizado para Nombre, Autor etc. Cuando se encesita un String sin 

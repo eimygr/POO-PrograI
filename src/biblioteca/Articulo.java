@@ -6,5 +6,6 @@ public abstract class Articulo {
     private boolean tipo;
     
     public abstract void CambiarEstado();
+    public abstract Cliente getCliente();
 
 }
