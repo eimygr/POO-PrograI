@@ -178,15 +178,36 @@ public class Biblioteca {
     /**
      *
      * Metodo que recibe un libro y lo coloca de nuevo como Disponible
+     * Devuelve solo un libro a la vez
      *
      * @param _cliente Recibe un cliente al que se le presto el libro
      * @param _libro Recibe el libro prestado
      */
     public void devolverLiteratura(Cliente _cliente, Articulo _libro){
         
+    //... si el cliente esta registrado
+        if (this.clienteRegistrado(_cliente.getId())) {
+            
+            
+        }
         
     }
     
+    
+    public int diasEntreFechas(Date _fechai, Date _fechaf) {
+        
+        if (_fechai.compareTo(_fechaf) == 0 ) {
+            return 0;
+        }
+        
+        int days1 = (int) (_fechai.getTime()/(60*60*24*1000));
+        int days2 = (int) (_fechaf.getTime()/(60*60*24*1000));
+        
+       
+        
+        return days2-days1;
+    
+    }
     
     /**
      *
@@ -324,6 +345,22 @@ public class Biblioteca {
         }
         return null; //Si no tiene un return por defecto, no compila
     }
+    
+    public Libro retLibro(String _id){  //Busca un Libro segun el Id y lo retorna
+
+        int largo = listaLibros.size();
+        for (int i = 0; i <= largo; i++) {
+
+            Libro libro = listaLibros.get(i);
+
+            if (libro.getId() == _id) {
+                return libro;
+            }
+
+        }
+        return null; //Si no tiene un return por defecto, no compila
+    }
+    
 
     // REGISTRA EL CLIENTE
     

@@ -67,4 +67,6 @@ public class Libro extends Articulo {
     public String getNombre(){
     return nombre;
     }
+    public String getId() {return this.id; }
 }
+
