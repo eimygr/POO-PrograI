@@ -70,6 +70,7 @@ package biblioteca;
         return costo;
     }
     
+    public String getId() {return id;}
      
     //Falta el setCliente   :):)
     
