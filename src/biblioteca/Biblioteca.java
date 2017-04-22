@@ -48,6 +48,8 @@ public class Biblioteca {
     
     private int diasPrestamoLibro;
     private int diasPrestamoRevista;
+    
+    private String sitioWeb;
 
     // listas dinamicas
     private Vector<Libro> listaLibros =  new Vector<Libro>();
@@ -68,17 +70,19 @@ public class Biblioteca {
      * @param _diasPrestamoRevista Int que contiene la cantidad de dias prestamo para las revistas 
      */
     public Biblioteca(String _nombre, String _ubicacion, int _telefono
-            , String _bibliotecologo, Date _fechaActual, int _diasPrestamoLibro,
+            , String _bibliotecologo, Date _fechaActual, String _sitio, int _diasPrestamoLibro,
             int _diasPrestamoRevista) {
         this.nombre = _nombre;
         this.ubicacion = _ubicacion;
         this.bibliotecologo = _bibliotecologo;
         this.telefono = _telefono;
         this.fechaActual = _fechaActual;
+        this.sitioWeb = _sitio;
         
         this.diasPrestamoLibro = _diasPrestamoLibro;
         this.diasPrestamoRevista = _diasPrestamoRevista;
-    
+        
+        
         
     }
     /**
@@ -92,9 +96,9 @@ public class Biblioteca {
      *
      */
     public Biblioteca(String _nombre, String _ubicacion, int _telefono
-            , String _bibliotecologo, Date _fechaActual) {
+            , String _bibliotecologo, Date _fechaActual,String _sitio) {
         this( _nombre,  _ubicacion,  _telefono
-            ,  _bibliotecologo,  _fechaActual,10,5);
+            ,  _bibliotecologo,  _fechaActual,_sitio,10,5);
         
         
         // PRUEBAS
@@ -233,6 +237,7 @@ public class Biblioteca {
     
     }
     
+    public Vector<Cliente> getListaClientes() {return this.listaClientes;}
     /**
      * Revisa los prestamos existente y si un cliente deberia de tener una multa
      * le cambia la morosidad a True a dicho Cliente.
@@ -245,7 +250,7 @@ public class Biblioteca {
 
             Prestamo prestamo = listaPrestamo.get(i);
             
-            if (this.tieneMulta(prestamo)) {
+            if (prestamo.getPrestAvtivo() && this.tieneMulta(prestamo)) {
                 Articulo articulo = prestamo.getArticulo();
                 Cliente clienteMoroso = articulo.getCliente();
                 clienteMoroso.setMoroso(true);                
@@ -253,21 +258,39 @@ public class Biblioteca {
         }
     }
     
+    /**
+     * Metodo que pone a todos sus clientes morosos y les envia un correo
+     * 
+     */
     public void consultarMulta() {
-        int x = 0;
+        this.revisarMorosidad();
+        
+        int largo = this.listaClientes.size();
+        for (int i = 0; i <= largo; i++) {
+            Cliente cliente = this.listaClientes.get(i);
+            if (cliente.getMoroso()) {
+                this.enviarCorreoMultas(cliente.getId());
+                
+                // El sistema debe desplegar al usuario una lista de las personas
+                // a las que se les envió el correo electrónico.
+
+            
+            }
+        
+        }
     }
     /**
      * Metodo utilizado cuando un cliente ya esta moroso, recibe el ID del cliente 
      * y le envia un correo con todos los articulos que tienen una multa
      * @param _idCliente 
      */
-    public void crearStringParaCorreoMultas(int _idCliente){
+    public void enviarCorreoMultas(int _idCliente){
         String Mensaje = "Buenas, a continuacion se le dara una lista con los "
-                + "articulos a los tiene que pagar una multa:/n  ";
+                + "articulos a los tiene que pagar una multa:/n  " + "\n";
         
         Vector<Prestamo> listaPrestamos = this.getListaPrestamos(_idCliente);
         
-        long multaTotal;
+        long multaTotal = 0;
         
         
         int largo = listaPrestamos.size();
@@ -277,20 +300,23 @@ public class Biblioteca {
             long multa = prestamo.calcularMulta(this.getDiasMulta(prestamo));
             String nombreArticulo = prestamo.getArticulo().getNombre();
             Mensaje += nombreArticulo + "/n Multa por este Articulo: " + 
-                        Long.toString(1);
-       
-            
-        }
+                        Long.toString(multa) + "/n";
+            multaTotal += multa;
+        } 
+        Mensaje += "Multa TOTAL a pagar: " + Long.toString(multaTotal);
         
+        Cliente cliente = this.retCliente(_idCliente);
         
+        Prestamo.EnviarCorreo(cliente.getCorreo(), Mensaje);
     
     }
     
     
     
+    
     /**
      * Funcion que recibe el id de un cliente y da una lista de los prestamos del
-     * Cliente
+     * Cliente (prestamos activos)
      * 
      * @param _idCliente recibe el id de un cliente
      * @return retorna una lista con los prestamos asociados a dicho clinte 
@@ -305,7 +331,8 @@ public class Biblioteca {
 
             Articulo articulo = prestamo.getArticulo();
             Cliente cliente = articulo.getCliente();
-            if (cliente.getMoroso() && cliente.getId() == _idCliente) {
+            if (cliente.getMoroso() && cliente.getId() == _idCliente && 
+                    prestamo.getPrestAvtivo()) {
                 listaPrestamo.add(prestamo);
             }
 
