@@ -1560,6 +1560,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Calcular multas y enviar correos"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonCalcularMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonVerLibros">
       <Properties>

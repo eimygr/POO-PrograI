@@ -1009,6 +1009,11 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         });
 
         botonCalcular.setText("Calcular multas y enviar correos");
+        botonCalcular.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonCalcularMouseClicked(evt);
+            }
+        });
 
         botonVerLibros.setText("Ver libros");
         botonVerLibros.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1516,7 +1521,7 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
 
     private void boxCedulaDeudasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxCedulaDeudasActionPerformed
         int id = Integer.parseInt(boxCedulaDeudas.getSelectedItem().toString());
-        Vector <Prestamo> listaPrestamosCliente = mainBiblioteca.getListaPrestamos(id); //CAMBIAR POR EL QUE RETORNA LOS ACTIVOS
+        Vector <Prestamo> listaPrestamosCliente = mainBiblioteca.getListaPrestamosTotales(id);
         int largo = listaPrestamosCliente.size();
         javax.swing.DefaultListModel<String> deudasCliente =  new javax.swing.DefaultListModel<String>();
         
@@ -1539,12 +1544,16 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         
         if (largo>0) {
                 for (int i = 0; i < largo; i++) {
-                    //aModel.addElement(clientes.get(i).getId());
-                    aModel.addElement("Hola");
+                    aModel.addElement(Integer.toString(clientes.get(i).getId()));
+                    //aModel.addElement("Hola");
                 }
         boxCedulaDeudas.setModel(aModel);
     }//GEN-LAST:event_ventanaDeudasWindowOpened
     }
+    private void botonCalcularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCalcularMouseClicked
+        mainBiblioteca.consultarMulta();
+    }//GEN-LAST:event_botonCalcularMouseClicked
+    
     
     
     
