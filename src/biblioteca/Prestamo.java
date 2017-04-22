@@ -17,6 +17,7 @@ public class Prestamo {
     private Date fechaDevuelto;
     private boolean prestActivo;
     private final long multaPorDia = 1000;
+    private int diasDeAtraso;
      
     /**
      * Metodo constructor para la clase Prestamo
@@ -30,7 +31,9 @@ public class Prestamo {
         duracionPrestamo = _duracion;
         fechaDevuelto = null;
         prestActivo = false;
+        diasDeAtraso = 0;
     }
+    
 
     //GETTERS Y SETTERS
     public void setFechaDevuelto(Date _fecha){fechaDevuelto = _fecha;}
@@ -41,6 +44,8 @@ public class Prestamo {
     public Date getFechaDevuelto(){return fechaDevuelto;}
     public Articulo getArticulo(){return articulo;}
     public long getMultaPorDia() {return multaPorDia;}
+    public int getDiasAtraso() {return diasDeAtraso;}
+    public void setDiasAtrso(int _dias) { diasDeAtraso = _dias;}
 
     /**
      * Metodo que toma una cantidad de dias y da la multa que tiene el cliente por

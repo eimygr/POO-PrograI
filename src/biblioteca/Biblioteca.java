@@ -221,6 +221,9 @@ public class Biblioteca {
         if (cantidadDiasPrestamo > diasDesdePrestamo) {
             //... si los diferencia de dias es mayor a la establecidad
             // el usuario tiene una multa
+            
+            _prestamo.setDiasAtrso(cantidadDiasPrestamo - diasDesdePrestamo);
+            
             return true;
            
         }
