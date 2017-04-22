@@ -144,6 +144,7 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         botonSalir = new javax.swing.JButton();
         botonDevolverLiteratura = new javax.swing.JButton();
         botonPrincipalPagarMulltas = new javax.swing.JButton();
+        botonDeudas = new javax.swing.JButton();
 
         ventanaRegistroManual.setMinimumSize(new java.awt.Dimension(400, 400));
 
@@ -885,6 +886,13 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addComponent(botonSalirRevistas))
         );
 
+        ventanaDeudas.setMinimumSize(new java.awt.Dimension(500, 500));
+        ventanaDeudas.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                ventanaDeudasWindowOpened(evt);
+            }
+        });
+
         jLabel22.setText("Deudas");
 
         jLabel23.setText("Escoja la cedula del cliente:");
@@ -1038,6 +1046,13 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
             }
         });
 
+        botonDeudas.setText("Mostrar deudas de un cliente");
+        botonDeudas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonDeudasMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1062,8 +1077,9 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(etiquetaApp))
                     .addComponent(botonPrincipalPagarMulltas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btotonRevistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(107, Short.MAX_VALUE))
+                    .addComponent(btotonRevistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonDeudas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1099,7 +1115,9 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                         .addComponent(botonVerLibros)
                         .addGap(18, 18, 18)
                         .addComponent(btotonRevistas)
-                        .addGap(0, 46, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(botonDeudas)
+                        .addGap(0, 68, Short.MAX_VALUE))))
         );
 
         pack();
@@ -1493,14 +1511,44 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
     }//GEN-LAST:event_botonDevolverLiteraturaMouseClicked
 
     private void botonPrincipalPagarMulltasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPrincipalPagarMulltasMouseClicked
-        ventanaPagarMulta1.setVisible(true);
+        ventanaPagarMulta2.setVisible(true);
     }//GEN-LAST:event_botonPrincipalPagarMulltasMouseClicked
 
     private void boxCedulaDeudasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxCedulaDeudasActionPerformed
         int id = Integer.parseInt(boxCedulaDeudas.getSelectedItem().toString());
-        //vector <Prestamo>
+        Vector <Prestamo> listaPrestamosCliente = mainBiblioteca.getListaPrestamos(id); //CAMBIAR POR EL QUE RETORNA LOS ACTIVOS
+        int largo = listaPrestamosCliente.size();
+        javax.swing.DefaultListModel<String> deudasCliente =  new javax.swing.DefaultListModel<String>();
+        
+        if (largo>0) {
+                for (int i = 0; i < largo; i++) {
+                    deudasCliente.addElement(listaPrestamosCliente.get(i).getArticulo().getNombre());
+                }
+            jlistaDeudas.setModel(deudasCliente);
+    
     }//GEN-LAST:event_boxCedulaDeudasActionPerformed
+    }  
+    private void botonDeudasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDeudasMouseClicked
+        ventanaDeudas.setVisible(true);
+    }//GEN-LAST:event_botonDeudasMouseClicked
 
+    private void ventanaDeudasWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanaDeudasWindowOpened
+        javax.swing.DefaultComboBoxModel<String> aModel = new javax.swing.DefaultComboBoxModel<String>();
+        Vector<Cliente> clientes = mainBiblioteca.getListaClientes();
+        int largo = clientes.size();
+        
+        if (largo>0) {
+                for (int i = 0; i < largo; i++) {
+                    //aModel.addElement(clientes.get(i).getId());
+                    aModel.addElement("Hola");
+                }
+        boxCedulaDeudas.setModel(aModel);
+    }//GEN-LAST:event_ventanaDeudasWindowOpened
+    }
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -1536,13 +1584,14 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         });
     }
 Date fecha = new Date();
-Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte", 22382118, "Maria del Carmen Mairena", fecha);
+Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte", 22382118, "Maria del Carmen Mairena", fecha, "www.google.com");
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField autorLibroText;
     private javax.swing.JButton botodModificarFecha;
     private javax.swing.JButton botonCalcular;
     private javax.swing.JButton botonComprar;
     private javax.swing.JButton botonConfig;
+    private javax.swing.JButton botonDeudas;
     private javax.swing.JButton botonDevolver;
     private javax.swing.JButton botonDevolverLiteratura;
     private javax.swing.JButton botonPagarMultas;

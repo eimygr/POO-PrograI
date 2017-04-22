@@ -1280,6 +1280,14 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="ventanaDeudas">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[500, 500]"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="ventanaDeudasWindowOpened"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1428,8 +1436,9 @@
                   </Group>
                   <Component id="botonPrincipalPagarMulltas" max="32767" attributes="0"/>
                   <Component id="btotonRevistas" max="32767" attributes="0"/>
+                  <Component id="botonDeudas" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="107" max="32767" attributes="0"/>
+              <EmptySpace pref="124" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -1469,7 +1478,9 @@
                       <Component id="botonVerLibros" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btotonRevistas" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="46" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="botonDeudas" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="68" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -1589,6 +1600,14 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonPrincipalPagarMulltasMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonDeudas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mostrar deudas de un cliente"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonDeudasMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>
