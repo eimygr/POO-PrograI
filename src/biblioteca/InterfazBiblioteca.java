@@ -123,6 +123,13 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jlistaRevistas = new javax.swing.JList<>();
         botonSalirRevistas = new javax.swing.JButton();
+        ventanaDeudas = new javax.swing.JFrame();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        boxCedulaDeudas = new javax.swing.JComboBox<>();
+        jLabel24 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jlistaDeudas = new javax.swing.JList<>();
         etiquetaApp = new javax.swing.JLabel();
         registrarBoton = new javax.swing.JButton();
         excelBoton = new javax.swing.JButton();
@@ -878,6 +885,59 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addComponent(botonSalirRevistas))
         );
 
+        jLabel22.setText("Deudas");
+
+        jLabel23.setText("Escoja la cedula del cliente:");
+
+        boxCedulaDeudas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "402380478" }));
+        boxCedulaDeudas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxCedulaDeudasActionPerformed(evt);
+            }
+        });
+
+        jLabel24.setText("Deudas:");
+
+        jScrollPane8.setViewportView(jlistaDeudas);
+
+        javax.swing.GroupLayout ventanaDeudasLayout = new javax.swing.GroupLayout(ventanaDeudas.getContentPane());
+        ventanaDeudas.getContentPane().setLayout(ventanaDeudasLayout);
+        ventanaDeudasLayout.setHorizontalGroup(
+            ventanaDeudasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaDeudasLayout.createSequentialGroup()
+                .addGroup(ventanaDeudasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ventanaDeudasLayout.createSequentialGroup()
+                        .addGap(182, 182, 182)
+                        .addComponent(jLabel22))
+                    .addGroup(ventanaDeudasLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(ventanaDeudasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ventanaDeudasLayout.createSequentialGroup()
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ventanaDeudasLayout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addGap(18, 18, 18)
+                                .addComponent(boxCedulaDeudas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(69, Short.MAX_VALUE))
+        );
+        ventanaDeudasLayout.setVerticalGroup(
+            ventanaDeudasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaDeudasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ventanaDeudasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boxCedulaDeudas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23))
+                .addGap(28, 28, 28)
+                .addGroup(ventanaDeudasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel24)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(91, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         etiquetaApp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -1436,6 +1496,11 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         ventanaPagarMulta1.setVisible(true);
     }//GEN-LAST:event_botonPrincipalPagarMulltasMouseClicked
 
+    private void boxCedulaDeudasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxCedulaDeudasActionPerformed
+        int id = Integer.parseInt(boxCedulaDeudas.getSelectedItem().toString());
+        //vector <Prestamo>
+    }//GEN-LAST:event_boxCedulaDeudasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1471,7 +1536,7 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         });
     }
 Date fecha = new Date();
-Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte", 22382118, "Maria del Carmen Mairena", fecha, 10, 8);
+Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte", 22382118, "Maria del Carmen Mairena", fecha);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField autorLibroText;
     private javax.swing.JButton botodModificarFecha;
@@ -1495,6 +1560,7 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JButton botonVentanaRegistrarCliente;
     private javax.swing.JButton botonVentanaRegistrarRevista;
     private javax.swing.JButton botonVerLibros;
+    private javax.swing.JComboBox<String> boxCedulaDeudas;
     private javax.swing.JComboBox<String> boxLibros;
     private javax.swing.JComboBox<String> boxRevistas;
     private javax.swing.JButton btotonRevistas;
@@ -1525,6 +1591,9 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1541,6 +1610,8 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JList<String> jlistaDeudas;
     private javax.swing.JList<String> jlistaLibros;
     private javax.swing.JList<String> jlistaLibrosPrestados;
     private javax.swing.JList<String> jlistaLibrosPrestamo;
@@ -1568,6 +1639,7 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JComboBox<String> revtipoBox;
     private javax.swing.JTextField telefonoText;
     private javax.swing.JFrame ventanaConfig;
+    private javax.swing.JFrame ventanaDeudas;
     private javax.swing.JFrame ventanaDevolverLiteratura;
     private javax.swing.JFrame ventanaPagarMulta1;
     private javax.swing.JFrame ventanaPagarMulta2;
