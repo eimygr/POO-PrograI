@@ -233,11 +233,13 @@ public class Biblioteca {
         Date diaInicialPrestamo = _prestamo.getFechaInicial();
         int diasDesdePrestamo = this.diasEntreFechas(diaInicialPrestamo, fechaActual);
         
-        return diasDesdePrestamo;
+        return diasDesdePrestamo - cantidadDiasPrestamo;
     
     }
     
     public Vector<Cliente> getListaClientes() {return this.listaClientes;}
+    
+    
     /**
      * Revisa los prestamos existente y si un cliente deberia de tener una multa
      * le cambia la morosidad a True a dicho Cliente.
@@ -318,6 +320,58 @@ public class Biblioteca {
     
     
     
+    /**
+     * 
+     * @param _idCliente 
+     */
+    public String mensajePagarMultas(int _idCliente) {
+        
+        this.revisarMorosidad();
+        
+        if (this.clienteRegistrado(_idCliente) && this.retCliente(_idCliente).getMoroso() ) {
+            String Mensaje = "Buenas, a continuacion se le dara una lista con los "
+                + "articulos a los tiene que pagar una multa:/n  " + "\n";
+
+            Vector<Prestamo> listaPrestamos = this.getListaPrestamos(_idCliente);
+
+            long multaTotal = 0;
+
+
+            int largo = listaPrestamos.size();
+            for (int i = 0;i <= largo; i++) {
+
+                Prestamo prestamo = listaPrestamos.get(i);
+                long multa = prestamo.calcularMulta(this.getDiasMulta(prestamo));
+                String nombreArticulo = prestamo.getArticulo().getNombre();
+                Mensaje += "Nombre: " + nombreArticulo + "/n Multa por este Articulo: " + 
+                            Long.toString(multa) + "/n";
+                multaTotal += multa;
+            } 
+            Mensaje += "Multa TOTAL a pagar: " + Long.toString(multaTotal);
+            return Mensaje;
+           
+        }
+        return "";
+    }
+    
+    public void pagarMulta(int _idCliente) {
+        
+        if (this.clienteRegistrado(_idCliente) && this.retCliente(_idCliente).getMoroso() ) {
+            
+            Cliente cliente = this.retCliente(_idCliente);
+            cliente.setMoroso(false);
+            Vector<Prestamo> listaPrestamos = this.getListaPrestamos(_idCliente);
+            int largo = listaPrestamos.size();
+            for (int i = 0;i <= largo; i++) {
+
+                Prestamo prestamo = listaPrestamos.get(i);
+                prestamo.setPrestActivo(false);
+                prestamo.getArticulo().CambiarEstado();
+            } 
+        }
+    }    
+    
+    
     
     /**
      * Funcion que recibe el id de un cliente y da una lista de los prestamos del
@@ -344,6 +398,35 @@ public class Biblioteca {
         }
         return listaPrestamos;    
     }
+    
+    /**
+     * Funcion que recibe el id de un cliente y da una lista de los prestamos del
+     * Cliente
+     * 
+     * @param _idCliente recibe el id de un cliente
+     * @return retorna una lista con los prestamos asociados a dicho clinte 
+     */
+    public Vector<Prestamo> getListaPrestamosTotales(int _idCliente) {
+        Vector<Prestamo> listaPrestamos = new Vector<Prestamo>();
+        
+        int largo = listaPrestamo.size();
+        for (int i = 0; i <= largo; i++) {
+
+            Prestamo prestamo = listaPrestamo.get(i);
+
+            Articulo articulo = prestamo.getArticulo();
+            Cliente cliente = articulo.getCliente();
+            if (cliente.getId() == _idCliente) {
+                listaPrestamo.add(prestamo);
+            }
+
+        }
+        return listaPrestamos;    
+    }
+    
+    
+    
+    
     
     /**
      * Metodo que recibe dos fechas y retorna la cantidad de dias entre una fecha
@@ -382,9 +465,10 @@ public class Biblioteca {
         int x = this.diasEntreFechas(this.fechaActual,inputDate);
         System.out.print(x);
         */
-        
-    
     }
+    
+    
+    
     
     /**
      *
