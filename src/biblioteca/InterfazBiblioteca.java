@@ -585,21 +585,33 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         label2.getAccessibleContext().setAccessibleName("");
 
         ventanaDevolverLiteratura.setMinimumSize(new java.awt.Dimension(400, 400));
+        ventanaDevolverLiteratura.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                ventanaDevolverLiteraturaWindowActivated(evt);
+            }
+        });
 
         label4.setText("Devolver literatura");
 
         jLabel14.setText("Cedula del cliente:");
 
+        idBoxDevolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idBoxDevolverActionPerformed(evt);
+            }
+        });
+
         jLabel15.setText("Libro(s) prestado(s):");
 
-        jlistaLibrosPrestados.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jlistaLibrosPrestados.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(jlistaLibrosPrestados);
 
         botonDevolver.setText("Devolver");
+        botonDevolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonDevolverMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout ventanaDevolverLiteraturaLayout = new javax.swing.GroupLayout(ventanaDevolverLiteratura.getContentPane());
         ventanaDevolverLiteratura.getContentPane().setLayout(ventanaDevolverLiteraturaLayout);
@@ -618,14 +630,13 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(ventanaDevolverLiteraturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(ventanaDevolverLiteraturaLayout.createSequentialGroup()
-                                        .addComponent(botonDevolver)
-                                        .addGap(0, 6, Short.MAX_VALUE))
-                                    .addComponent(jScrollPane3)))))
+                                    .addComponent(botonDevolver)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(ventanaDevolverLiteraturaLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(147, 147, 147))
+                        .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(101, 101, 101)))
+                .addGap(46, 46, 46))
         );
         ventanaDevolverLiteraturaLayout.setVerticalGroup(
             ventanaDevolverLiteraturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1042,6 +1053,11 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 botonDevolverLiteraturaMouseClicked(evt);
             }
         });
+        botonDevolverLiteratura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonDevolverLiteraturaActionPerformed(evt);
+            }
+        });
 
         botonPrincipalPagarMulltas.setText("Pagar multas");
         botonPrincipalPagarMulltas.setActionCommand("");
@@ -1378,8 +1394,9 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
 
     private void botonComprarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonComprarMouseClicked
         Vector<Revista> listaRevista = mainBiblioteca.getListaRevistas();
+        int id=0;
         try{
-            int id = Integer.parseInt(idClienteVenta.getText());
+            id = Integer.parseInt(idClienteVenta.getText());
         }
         catch (java.lang.NumberFormatException e){
             JOptionPane.showMessageDialog(rootPane, "Datos incorrectos");
@@ -1389,7 +1406,7 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         //listaRevista.get(jlistaRevistasVenta.getSelectedIndex());
         if (JOptionPane.YES_OPTION == comprar){
             try{
-                mainBiblioteca.venderRevista(comprar, listaRevista.get(jlistaRevistasVenta.getSelectedIndex()));
+                mainBiblioteca.venderRevista(id, listaRevista.get(jlistaRevistasVenta.getSelectedIndex()));
                 ventanaVentaRevista.dispose();
             }
             catch (java.lang.IllegalArgumentException e){
@@ -1553,7 +1570,52 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
     private void botonCalcularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCalcularMouseClicked
         mainBiblioteca.consultarMulta();
     }//GEN-LAST:event_botonCalcularMouseClicked
-    
+
+    private void botonDevolverLiteraturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDevolverLiteraturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonDevolverLiteraturaActionPerformed
+
+    private void ventanaDevolverLiteraturaWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanaDevolverLiteraturaWindowActivated
+        javax.swing.DefaultComboBoxModel<String> aModel = new javax.swing.DefaultComboBoxModel<String>();
+        Vector<Cliente> clientes = mainBiblioteca.getListaClientes();
+        int largo = clientes.size();
+        
+        if (largo>0) {
+                for (int i = 0; i < largo; i++) {
+                    aModel.addElement(Integer.toString(clientes.get(i).getId()));
+                    //aModel.addElement("Hola");
+                }
+        idBoxDevolver.setModel(aModel);
+    } 
+    }//GEN-LAST:event_ventanaDevolverLiteraturaWindowActivated
+
+    private void idBoxDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idBoxDevolverActionPerformed
+        int id = Integer.parseInt(idBoxDevolver.getSelectedItem().toString());
+        Vector <Prestamo> listaPrestamosCliente = mainBiblioteca.getListaPrestamosTotales(id);
+        int largo = listaPrestamosCliente.size();
+        javax.swing.DefaultListModel<String> deudasCliente =  new javax.swing.DefaultListModel<String>();
+        
+        if (largo>0) {
+                for (int i = 0; i < largo; i++) {
+                    if (listaPrestamosCliente.get(i).getPrestAvtivo()){
+                    deudasCliente.addElement(listaPrestamosCliente.get(i).getArticulo().getNombre());}
+                }
+            jlistaLibrosPrestados.setModel(deudasCliente);
+    }//GEN-LAST:event_idBoxDevolverActionPerformed
+    }
+    private void botonDevolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDevolverMouseClicked
+        int i = jlistaLibrosPrestados.getSelectedIndex();
+        int id = Integer.parseInt(idBoxDevolver.getSelectedItem().toString());
+        Vector <Prestamo> listaPrestamosCliente = mainBiblioteca.getListaPrestamosTotales(id);
+        Articulo articuloDevuelto = listaPrestamosCliente.get(i).getArticulo();
+       
+        JOptionPane.showMessageDialog(rootPane, "Devolucion satisfactoria");
+       
+        
+        mainBiblioteca.devolverArticulo(id, articuloDevuelto);
+        ventanaDevolverLiteratura.dispose();
+    }//GEN-LAST:event_botonDevolverMouseClicked
+       
     
     
     

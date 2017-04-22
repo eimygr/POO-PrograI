@@ -424,7 +424,7 @@ public class Biblioteca {
             Articulo articulo = prestamo.getArticulo();
             Cliente cliente = articulo.getCliente();
             if (cliente.getId() == _idCliente) {
-                listaPrestamo.add(prestamo);
+                listaPrestamos.add(prestamo);
             }
 
         }
@@ -788,7 +788,7 @@ public class Biblioteca {
     public void venderRevista(int _idCliente, Revista _revista) {
 
          if ( clienteRegistrado( _idCliente) && _revista.getEstado() == Estado.Disponible) {
-             System.out.println("HOLA");
+             //System.out.println("HOLA");
              Cliente cliente = retCliente(_idCliente);
              _revista.setEstado(Estado.Vendida);
              _revista.setCliente(cliente);
