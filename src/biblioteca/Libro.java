@@ -67,6 +67,7 @@ public class Libro extends Articulo {
     public void setCliente(Cliente _cliente){
         cliente = _cliente;
     }
+    @Override
     public String getNombre(){
     return nombre;
     }

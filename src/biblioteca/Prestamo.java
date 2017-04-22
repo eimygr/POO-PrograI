@@ -16,6 +16,7 @@ public class Prestamo {
     private int duracionPrestamo;
     private Date fechaDevuelto;
     private boolean prestActivo;
+    private final long multaPorDia = 1000;
      
     /**
      * Metodo constructor para la clase Prestamo
@@ -39,7 +40,21 @@ public class Prestamo {
     public Date getFechaInicial(){return fechaInicial;}
     public Date getFechaDevuelto(){return fechaDevuelto;}
     public Articulo getArticulo(){return articulo;}
+    public long getMultaPorDia() {return multaPorDia;}
 
+    /**
+     * Metodo que toma una cantidad de dias y da la multa que tiene el cliente por
+     * esos dias
+     * 
+     * @param _cantidadDias recibe una cantidad de dias
+     * @return devuelve un la multa determinada por esa cantidad de dias
+     */
+    public long calcularMulta(int _cantidadDias) {
+        return _cantidadDias*multaPorDia;
+    }
+    
+    
+    
     /**
      * 
      * Metodo creado para enviar un correo al usuario

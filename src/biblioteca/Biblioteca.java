@@ -207,7 +207,8 @@ public class Biblioteca {
      * @param _prestamo recibe un prestamo
      * @return retorna True si el cliente de dicho prestamo tiene una multa
      */
-    boolean tieneMulta(Prestamo _prestamo) {
+    public boolean tieneMulta(Prestamo _prestamo) {
+        
         
         int cantidadDiasPrestamo = _prestamo.getDuracionPrestamo();
         Date diaInicialPrestamo = _prestamo.getFechaInicial();
@@ -221,6 +222,15 @@ public class Biblioteca {
         }
         return false;
         
+    }
+    
+    public int getDiasMulta(Prestamo _prestamo) {
+        int cantidadDiasPrestamo = _prestamo.getDuracionPrestamo();
+        Date diaInicialPrestamo = _prestamo.getFechaInicial();
+        int diasDesdePrestamo = this.diasEntreFechas(diaInicialPrestamo, fechaActual);
+        
+        return diasDesdePrestamo;
+    
     }
     
     /**
@@ -242,6 +252,42 @@ public class Biblioteca {
             }
         }
     }
+    
+    public void consultarMulta() {
+        int x = 0;
+    }
+    /**
+     * Metodo utilizado cuando un cliente ya esta moroso, recibe el ID del cliente 
+     * y le envia un correo con todos los articulos que tienen una multa
+     * @param _idCliente 
+     */
+    public void crearStringParaCorreoMultas(int _idCliente){
+        String Mensaje = "Buenas, a continuacion se le dara una lista con los "
+                + "articulos a los tiene que pagar una multa:/n  ";
+        
+        Vector<Prestamo> listaPrestamos = this.getListaPrestamos(_idCliente);
+        
+        long multaTotal;
+        
+        
+        int largo = listaPrestamos.size();
+        for (int i = 0;i <= largo; i++) {
+            
+            Prestamo prestamo = listaPrestamos.get(i);
+            long multa = prestamo.calcularMulta(this.getDiasMulta(prestamo));
+            String nombreArticulo = prestamo.getArticulo().getNombre();
+            Mensaje += nombreArticulo + "/n Multa por este Articulo: " + 
+                        Long.toString(1);
+       
+            
+        }
+        
+        
+    
+    }
+    
+    
+    
     /**
      * Funcion que recibe el id de un cliente y da una lista de los prestamos del
      * Cliente

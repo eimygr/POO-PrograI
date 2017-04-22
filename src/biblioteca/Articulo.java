@@ -7,5 +7,6 @@ public abstract class Articulo {
     
     public abstract void CambiarEstado();
     public abstract Cliente getCliente();
+    public abstract String getNombre();
 
 }

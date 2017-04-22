@@ -37,7 +37,7 @@ package biblioteca;
         costo = _costo;
         estado = Estado.Disponible;
     }
-    
+    @Override
     public String getNombre(){
         return nombre;
     }
