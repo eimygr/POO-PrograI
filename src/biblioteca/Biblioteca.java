@@ -337,7 +337,7 @@ public class Biblioteca {
         
         if (this.clienteRegistrado(_idCliente) && this.retCliente(_idCliente).getMoroso() ) {
             String Mensaje = "Buenas, a continuacion se le dara una lista con los "
-                + "articulos a los tiene que pagar una multa:/n  " + "\n";
+                + "articulos a los tiene que pagar una multa:" + "\n";
 
             Vector<Prestamo> listaPrestamos = this.getListaPrestamos(_idCliente);
 
@@ -350,11 +350,11 @@ public class Biblioteca {
                 Prestamo prestamo = listaPrestamos.get(i);
                 long multa = prestamo.calcularMulta(this.getDiasMulta(prestamo));
                 String nombreArticulo = prestamo.getArticulo().getNombre();
-                Mensaje += "Nombre: " + nombreArticulo + "/n Multa por este Articulo: " + 
-                            Long.toString(multa) + "/n";
+                Mensaje += "\nNombre: " + nombreArticulo + "\nMulta por este Articulo: " + 
+                            Long.toString(multa);
                 multaTotal += multa;
             } 
-            Mensaje += "Multa TOTAL a pagar: " + Long.toString(multaTotal);
+            Mensaje += "\nMulta TOTAL a pagar: " + Long.toString(multaTotal);
             return Mensaje;
            
         }

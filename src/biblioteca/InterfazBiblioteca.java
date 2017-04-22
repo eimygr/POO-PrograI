@@ -102,13 +102,12 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         labelMontoTotal = new javax.swing.JLabel();
         ventanaPagarMulta2 = new javax.swing.JFrame();
         label7 = new java.awt.Label();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        boxIdPagarMulta = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
         labelMontoTotal2 = new javax.swing.JLabel();
         botonPagarMultas2 = new javax.swing.JButton();
+        infoMultas = new javax.swing.JTextField();
         jventanaLibros = new javax.swing.JFrame();
         label5 = new java.awt.Label();
         label6 = new java.awt.Label();
@@ -717,25 +716,40 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        ventanaPagarMulta2.setMinimumSize(new java.awt.Dimension(500, 500));
+        ventanaPagarMulta2.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                ventanaPagarMulta2WindowActivated(evt);
+            }
+        });
+
         label7.setText("Cedula del cliente:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boxIdPagarMulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxIdPagarMultaActionPerformed(evt);
+            }
+        });
 
         jLabel20.setText("Monto total a pagar: ");
 
         jLabel21.setText("Libros con multa:");
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane7.setViewportView(jList2);
-
         labelMontoTotal2.setText("(COSTO)");
 
         botonPagarMultas2.setText("Paga multas");
         botonPagarMultas2.setActionCommand("Pagar multas");
+        botonPagarMultas2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonPagarMultas2MouseClicked(evt);
+            }
+        });
+
+        infoMultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                infoMultasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ventanaPagarMulta2Layout = new javax.swing.GroupLayout(ventanaPagarMulta2.getContentPane());
         ventanaPagarMulta2.getContentPane().setLayout(ventanaPagarMulta2Layout);
@@ -745,33 +759,39 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addGap(71, 71, 71)
                 .addGroup(ventanaPagarMulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(botonPagarMultas2)
-                    .addGroup(ventanaPagarMulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(ventanaPagarMulta2Layout.createSequentialGroup()
-                            .addComponent(jLabel21)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jScrollPane7))
-                        .addGroup(ventanaPagarMulta2Layout.createSequentialGroup()
-                            .addComponent(jLabel20)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(labelMontoTotal2))
-                        .addGroup(ventanaPagarMulta2Layout.createSequentialGroup()
-                            .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(157, Short.MAX_VALUE))
+                    .addGroup(ventanaPagarMulta2Layout.createSequentialGroup()
+                        .addGroup(ventanaPagarMulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ventanaPagarMulta2Layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelMontoTotal2))
+                            .addGroup(ventanaPagarMulta2Layout.createSequentialGroup()
+                                .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boxIdPagarMulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(198, 198, 198))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ventanaPagarMulta2Layout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addGap(18, 18, 18)
+                        .addComponent(infoMultas, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ventanaPagarMulta2Layout.setVerticalGroup(
             ventanaPagarMulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ventanaPagarMulta2Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(ventanaPagarMulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxIdPagarMulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
                 .addGroup(ventanaPagarMulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel21)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                    .addGroup(ventanaPagarMulta2Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(ventanaPagarMulta2Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(infoMultas, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(ventanaPagarMulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(labelMontoTotal2))
@@ -1615,6 +1635,35 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         mainBiblioteca.devolverArticulo(id, articuloDevuelto);
         ventanaDevolverLiteratura.dispose();
     }//GEN-LAST:event_botonDevolverMouseClicked
+
+    private void boxIdPagarMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxIdPagarMultaActionPerformed
+        int id = Integer.parseInt(boxIdPagarMulta.getSelectedItem().toString());
+        String mensaje = mainBiblioteca.mensajePagarMultas(id);
+        infoMultas.setText(mensaje);
+    }//GEN-LAST:event_boxIdPagarMultaActionPerformed
+
+    private void ventanaPagarMulta2WindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_ventanaPagarMulta2WindowActivated
+                javax.swing.DefaultComboBoxModel<String> aModel = new javax.swing.DefaultComboBoxModel<String>();
+        Vector<Cliente> clientes = mainBiblioteca.getListaClientes();
+        int largo = clientes.size();
+        
+        if (largo>0) {
+                for (int i = 0; i < largo; i++) {
+                    aModel.addElement(Integer.toString(clientes.get(i).getId()));
+                    //aModel.addElement("Hola");
+                }
+        boxIdPagarMulta.setModel(aModel);
+    }
+    }//GEN-LAST:event_ventanaPagarMulta2WindowActivated
+
+    private void infoMultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoMultasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_infoMultasActionPerformed
+
+    private void botonPagarMultas2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPagarMultas2MouseClicked
+        int id = Integer.parseInt(boxIdPagarMulta.getSelectedItem().toString());
+        mainBiblioteca.pagarMulta(id);
+    }//GEN-LAST:event_botonPagarMultas2MouseClicked
        
     
     
@@ -1681,6 +1730,7 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JButton botonVentanaRegistrarRevista;
     private javax.swing.JButton botonVerLibros;
     private javax.swing.JComboBox<String> boxCedulaDeudas;
+    private javax.swing.JComboBox<String> boxIdPagarMulta;
     private javax.swing.JComboBox<String> boxLibros;
     private javax.swing.JComboBox<String> boxRevistas;
     private javax.swing.JButton btotonRevistas;
@@ -1696,7 +1746,7 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JTextField idClienteVenta;
     private javax.swing.JTextField idPrestamoText;
     private javax.swing.JTextField idText;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField infoMultas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1722,14 +1772,12 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JList<String> jlistaDeudas;
     private javax.swing.JList<String> jlistaLibros;
