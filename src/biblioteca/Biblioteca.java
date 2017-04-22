@@ -261,8 +261,13 @@ public class Biblioteca {
     /**
      * Metodo que pone a todos sus clientes morosos y les envia un correo
      * 
+     * 
      */
     public void consultarMulta() {
+        
+        // PUNTO 11 CALCULAR MULTAS
+        
+        
         this.revisarMorosidad();
         
         int largo = this.listaClientes.size();
