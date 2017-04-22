@@ -8,8 +8,8 @@ package biblioteca;
 import java.util.Date;
 import java.util.Vector;
 import javax.swing.JOptionPane;
-//import org.jdatepicker.impl.JDatePanelImpl;
-//import org.jdatepicker.impl.UtilDateModel;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
 /**
  *
@@ -136,6 +136,7 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         btotonRevistas = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
         botonDevolverLiteratura = new javax.swing.JButton();
+        botonPrincipalPagarMulltas = new javax.swing.JButton();
 
         ventanaRegistroManual.setMinimumSize(new java.awt.Dimension(400, 400));
 
@@ -575,6 +576,8 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
 
         label2.getAccessibleContext().setAccessibleName("");
 
+        ventanaDevolverLiteratura.setMinimumSize(new java.awt.Dimension(400, 400));
+
         label4.setText("Devolver literatura");
 
         jLabel14.setText("Cedula del cliente:");
@@ -967,6 +970,14 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
             }
         });
 
+        botonPrincipalPagarMulltas.setText("Pagar multas");
+        botonPrincipalPagarMulltas.setActionCommand("");
+        botonPrincipalPagarMulltas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonPrincipalPagarMulltasMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -980,16 +991,19 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(excelBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(registrarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(etiquetaApp)
                     .addComponent(botonRegistrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonRegistrarRevista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonVentaRevista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonVerLibros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btotonRevistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonDevolverLiteratura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(109, Short.MAX_VALUE))
+                    .addComponent(botonDevolverLiteratura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(etiquetaApp))
+                    .addComponent(botonPrincipalPagarMulltas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btotonRevistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1004,22 +1018,28 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
                 .addComponent(botonRegistrarRevista)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(excelBoton)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonPrestamo)
                 .addGap(18, 18, 18)
                 .addComponent(botonVentaRevista)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(botonDevolverLiteratura)
-                .addGap(13, 13, 13)
+                .addGap(18, 18, 18)
+                .addComponent(botonPrincipalPagarMulltas)
+                .addGap(18, 18, 18)
                 .addComponent(botonCalcular)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonVerLibros)
                 .addGap(18, 18, 18)
-                .addComponent(btotonRevistas)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonConfig)
-                    .addComponent(botonSalir)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonConfig)
+                            .addComponent(botonSalir)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonVerLibros)
+                        .addGap(18, 18, 18)
+                        .addComponent(btotonRevistas)
+                        .addGap(0, 46, Short.MAX_VALUE))))
         );
 
         pack();
@@ -1412,6 +1432,10 @@ public class InterfazBiblioteca extends javax.swing.JFrame {
         ventanaDevolverLiteratura.setVisible(true);
     }//GEN-LAST:event_botonDevolverLiteraturaMouseClicked
 
+    private void botonPrincipalPagarMulltasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPrincipalPagarMulltasMouseClicked
+        ventanaPagarMulta1.setVisible(true);
+    }//GEN-LAST:event_botonPrincipalPagarMulltasMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1460,6 +1484,7 @@ Biblioteca mainBiblioteca = new Biblioteca("Biblioteca Bonita", "Mercedes Norte"
     private javax.swing.JButton botonPagarMultas2;
     private javax.swing.JButton botonPantallaRegistrar;
     private javax.swing.JButton botonPrestamo;
+    private javax.swing.JButton botonPrincipalPagarMulltas;
     private javax.swing.JButton botonRegistrarCliente;
     private javax.swing.JButton botonRegistrarPrestamo;
     private javax.swing.JButton botonRegistrarRevista;
