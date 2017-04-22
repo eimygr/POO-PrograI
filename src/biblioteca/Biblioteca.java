@@ -93,7 +93,7 @@ public class Biblioteca {
      * @param _telefono int telefono de la biblioteca
      * @param _bibliotecologo string nombre del bibliotecologo
      * @param _fechaActual Date que contiene la fecha al inciar al programa
-     *
+     * @param _sitio Sitio web de la biblioteca
      */
     public Biblioteca(String _nombre, String _ubicacion, int _telefono
             , String _bibliotecologo, Date _fechaActual,String _sitio) {
@@ -218,7 +218,7 @@ public class Biblioteca {
         Date diaInicialPrestamo = _prestamo.getFechaInicial();
         int diasDesdePrestamo = this.diasEntreFechas(diaInicialPrestamo, fechaActual);
         
-        if (cantidadDiasPrestamo > diasDesdePrestamo) {
+        if (cantidadDiasPrestamo < diasDesdePrestamo) {
             //... si los diferencia de dias es mayor a la establecidad
             // el usuario tiene una multa
             
@@ -261,7 +261,8 @@ public class Biblioteca {
             if (prestamo.getPrestAvtivo() && this.tieneMulta(prestamo)) {
                 Articulo articulo = prestamo.getArticulo();
                 Cliente clienteMoroso = articulo.getCliente();
-                clienteMoroso.setMoroso(true);                
+                clienteMoroso.setMoroso(true); 
+                System.out.println("Cliente moroso");
             }
         }
     }
@@ -299,7 +300,7 @@ public class Biblioteca {
      */
     public void enviarCorreoMultas(int _idCliente){
         String Mensaje = "Buenas, a continuacion se le dara una lista con los "
-                + "articulos a los tiene que pagar una multa:/n  " + "\n";
+                + "articulos a los tiene que pagar una multa:  " + "\n";
         
         Vector<Prestamo> listaPrestamos = this.getListaPrestamos(_idCliente);
         
@@ -312,11 +313,11 @@ public class Biblioteca {
             Prestamo prestamo = listaPrestamos.get(i);
             long multa = prestamo.calcularMulta(this.getDiasMulta(prestamo));
             String nombreArticulo = prestamo.getArticulo().getNombre();
-            Mensaje += nombreArticulo + "/n Multa por este Articulo: " + 
-                        Long.toString(multa) + "/n";
+            Mensaje += nombreArticulo + "\n*Multa por este Articulo: " + 
+                        Long.toString(multa);
             multaTotal += multa;
         } 
-        Mensaje += "Multa TOTAL a pagar: " + Long.toString(multaTotal);
+        Mensaje += "\nMulta TOTAL a pagar: " + Long.toString(multaTotal);
         
         Cliente cliente = this.retCliente(_idCliente);
         
@@ -398,7 +399,7 @@ public class Biblioteca {
             Cliente cliente = articulo.getCliente();
             if (cliente.getMoroso() && cliente.getId() == _idCliente && 
                     prestamo.getPrestAvtivo()) {
-                listaPrestamo.add(prestamo);
+                listaPrestamos.add(prestamo);
             }
 
         }
@@ -837,7 +838,8 @@ public class Biblioteca {
                 _libro.CambiarEstado();  //No estaba escrito el metodo en la clase libro
                 _libro.setCliente(cliente);
 
-                Prestamo nuevoPrest = new Prestamo (fechaActual, _libro, diasPrestamoRevista);
+                Prestamo nuevoPrest = new Prestamo (fechaActual, _libro, diasPrestamoLibro);
+                nuevoPrest.setPrestActivo(true);
                 listaPrestamo.add(nuevoPrest);
 
             }
