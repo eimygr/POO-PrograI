@@ -222,7 +222,7 @@ public class Biblioteca {
             //... si los diferencia de dias es mayor a la establecidad
             // el usuario tiene una multa
             
-            _prestamo.setDiasAtrso(cantidadDiasPrestamo - diasDesdePrestamo);
+            _prestamo.setDiasAtrso(this.getDiasMulta(_prestamo));
             
             return true;
            
@@ -235,6 +235,9 @@ public class Biblioteca {
         int cantidadDiasPrestamo = _prestamo.getDuracionPrestamo();
         Date diaInicialPrestamo = _prestamo.getFechaInicial();
         int diasDesdePrestamo = this.diasEntreFechas(diaInicialPrestamo, fechaActual);
+        
+        if ((diasDesdePrestamo - cantidadDiasPrestamo) < 0)
+            return 0;
         
         return diasDesdePrestamo - cantidadDiasPrestamo;
     
@@ -251,7 +254,7 @@ public class Biblioteca {
     public void revisarMorosidad() {
         
         int largo = listaPrestamo.size();
-        for (int i = 0; i <= largo; i++) {
+        for (int i = 0; i < largo; i++) {
 
             Prestamo prestamo = listaPrestamo.get(i);
             
@@ -276,7 +279,7 @@ public class Biblioteca {
         this.revisarMorosidad();
         
         int largo = this.listaClientes.size();
-        for (int i = 0; i <= largo; i++) {
+        for (int i = 0; i < largo; i++) {
             Cliente cliente = this.listaClientes.get(i);
             if (cliente.getMoroso()) {
                 this.enviarCorreoMultas(cliente.getId());
@@ -304,7 +307,7 @@ public class Biblioteca {
         
         
         int largo = listaPrestamos.size();
-        for (int i = 0;i <= largo; i++) {
+        for (int i = 0;i < largo; i++) {
             
             Prestamo prestamo = listaPrestamos.get(i);
             long multa = prestamo.calcularMulta(this.getDiasMulta(prestamo));
@@ -341,7 +344,7 @@ public class Biblioteca {
 
 
             int largo = listaPrestamos.size();
-            for (int i = 0;i <= largo; i++) {
+            for (int i = 0;i < largo; i++) {
 
                 Prestamo prestamo = listaPrestamos.get(i);
                 long multa = prestamo.calcularMulta(this.getDiasMulta(prestamo));
@@ -365,7 +368,7 @@ public class Biblioteca {
             cliente.setMoroso(false);
             Vector<Prestamo> listaPrestamos = this.getListaPrestamos(_idCliente);
             int largo = listaPrestamos.size();
-            for (int i = 0;i <= largo; i++) {
+            for (int i = 0;i < largo; i++) {
 
                 Prestamo prestamo = listaPrestamos.get(i);
                 prestamo.setPrestActivo(false);
@@ -387,7 +390,7 @@ public class Biblioteca {
         Vector<Prestamo> listaPrestamos = new Vector<Prestamo>();
         
         int largo = listaPrestamo.size();
-        for (int i = 0; i <= largo; i++) {
+        for (int i = 0; i < largo; i++) {
 
             Prestamo prestamo = listaPrestamo.get(i);
 
@@ -413,7 +416,7 @@ public class Biblioteca {
         Vector<Prestamo> listaPrestamos = new Vector<Prestamo>();
         
         int largo = listaPrestamo.size();
-        for (int i = 0; i <= largo; i++) {
+        for (int i = 0; i < largo; i++) {
 
             Prestamo prestamo = listaPrestamo.get(i);
 
@@ -470,6 +473,39 @@ public class Biblioteca {
         */
     }
     
+    
+    /**
+     * Metodo que devuelve un articulo si este no esta moroso
+     * 
+     * @param _idCliente id del cliente que devolvera un libro  
+     * @param _articuloADevolver articulo que el cliente va a devolver
+     * @return retorna true si el devolver articulo fue efectivo
+     */
+    public boolean devolverArticulo(int _idCliente, Articulo _articuloADevolver) {
+        this.revisarMorosidad();
+        
+        if (this.clienteRegistrado(_idCliente) ){
+            //_articuloADevolver.CambiarEstado();
+            int largo = this.listaPrestamo.size();
+            for (int i = 0; i < largo; i++) {
+                Prestamo prestamo = this.listaPrestamo.get(i);
+                if (prestamo.getArticulo().getCliente().getId() == _idCliente &&
+                        prestamo.getDiasAtraso() == 0) {
+                    prestamo.setPrestActivo(false);
+                    _articuloADevolver.CambiarEstado();
+                    return true;
+                  
+             
+                } else if (prestamo.getArticulo().getCliente().getId() == _idCliente &&
+                        prestamo.getDiasAtraso() != 0) {
+                    return false;
+                }
+            
+            }
+                    
+        }
+        return true;
+    }
     
     
     
@@ -605,7 +641,7 @@ public class Biblioteca {
     public Cliente retCliente(int _id){  //Busca un cliente segun el Id y lo retorna
 
         int largo = listaClientes.size();
-        for (int i = 0; i <= largo; i++) {
+        for (int i = 0; i < largo; i++) {
 
             Cliente cliente = listaClientes.get(i);
 
@@ -620,7 +656,7 @@ public class Biblioteca {
     public Libro retLibro(String _id){  //Busca un Libro segun el Id y lo retorna
 
         int largo = listaLibros.size();
-        for (int i = 0; i <= largo; i++) {
+        for (int i = 0; i < largo; i++) {
 
             Libro libro = listaLibros.get(i);
 
@@ -731,7 +767,7 @@ public class Biblioteca {
     public boolean clienteRegistrado(int _id) {
         int largo = this.listaClientes.size();
         if (largo>0) {
-            for (int i = 0; i <= largo; i++) {
+            for (int i = 0; i < largo; i++) {
                 if (this.listaClientes.get(i).getId() == _id) {
                     return true;
                 }
@@ -841,7 +877,7 @@ public class Biblioteca {
         // crear la lista
         Vector<Libro> listaConsultada = new Vector<Libro>(); 
         
-           for (int i = 0; i <= this.listaLibros.size(); i++) {
+           for (int i = 0; i < this.listaLibros.size(); i++) {
                // si el libro tiene el mismo estado que esta recibiendo el metodo
                if (this.listaLibros.get(i).getEstado() == _estado) {
 
@@ -865,7 +901,7 @@ public class Biblioteca {
         // crear la lista
         Vector<Revista> listaConsultada = new Vector<Revista>(); 
         
-           for (int i = 0; i <= this.listaLibros.size(); i++) {
+           for (int i = 0; i < this.listaLibros.size(); i++) {
                // si el libro tiene el mismo estado que esta recibiendo el metodo
                if (this.listaRevistas.get(i).getEstado() == _estado) {
 
